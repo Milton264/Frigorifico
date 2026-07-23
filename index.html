@@ -2203,6 +2203,111 @@ header{transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
   .cert{min-height:142px}
 }
 
+/* =========================================================
+   V5 · ALTERNANCIA CONTINUA: BLANCO / AZUL
+   Industrial ............. Blanco
+   Cámaras ................ Azul
+   Servicios de cámaras ... Blanco
+   Proceso ................ Azul
+   Refrigeración comercial  Blanco
+   Galería ................ Azul
+   Certificaciones ........ Blanco
+   Preguntas frecuentes ... Azul
+   Contacto ............... Blanco
+   ========================================================= */
+#industrial,
+.carousel-sec + .alt,
+#comercial,
+#certificaciones,
+#contacto{
+  background:
+    radial-gradient(circle at 92% 12%,rgba(133,218,243,.12),transparent 24rem),
+    linear-gradient(180deg,#fff,#f6fcfe);
+}
+
+.process-sec,
+#comercial + .alt,
+#certificaciones + .alt{
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  background:
+    radial-gradient(circle at 12% 15%,rgba(143,226,248,.17),transparent 27rem),
+    radial-gradient(circle at 88% 82%,rgba(102,203,232,.13),transparent 30rem),
+    linear-gradient(145deg,#073550,#0e6388);
+}
+.process-sec::after,
+#comercial + .alt::after,
+#certificaciones + .alt::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.2;
+  background-image:radial-gradient(circle at center,rgba(228,250,255,.55) 1px,transparent 1.5px);
+  background-size:42px 42px;
+}
+.process-sec > .wrap,
+#comercial + .alt > .wrap,
+#certificaciones + .alt > .wrap{
+  position:relative;
+  z-index:1;
+}
+.process-sec .sec-title,
+#comercial + .alt .sec-title,
+#certificaciones + .alt .sec-title{
+  color:#fff;
+}
+.process-sec .sec-lead,
+#comercial + .alt .sec-lead,
+#certificaciones + .alt .sec-lead{
+  color:rgba(239,251,255,.82);
+}
+.process-sec .eyebrow-sec,
+#comercial + .alt .eyebrow-sec,
+#certificaciones + .alt .eyebrow-sec{
+  color:#a7edff;
+}
+.process-sec .eyebrow-sec::before,
+#comercial + .alt .eyebrow-sec::before,
+#certificaciones + .alt .eyebrow-sec::before{
+  background:linear-gradient(90deg,#fff,#70d9f5);
+}
+
+/* El proceso mantiene tarjetas blancas para que los cuatro pasos se entiendan. */
+.process-sec .steps{
+  border-color:rgba(214,247,255,.3);
+  box-shadow:0 24px 70px rgba(1,26,39,.24);
+}
+
+/* La galería vive sobre azul, con un borde frío que separa cada fotografía. */
+#comercial + .alt .gallery a{
+  border:1px solid rgba(216,248,255,.24);
+  box-shadow:0 18px 52px rgba(1,29,43,.3);
+}
+
+/* Las preguntas se leen como bloques claros dentro de la sección azul. */
+#certificaciones + .alt .faq-item{
+  margin-bottom:10px;
+  padding:0 22px;
+  border:1px solid rgba(213,247,255,.17);
+  border-radius:14px;
+  background:rgba(238,251,255,.07);
+  box-shadow:inset 0 1px rgba(255,255,255,.06);
+}
+#certificaciones + .alt .faq-q{color:#fff}
+#certificaciones + .alt .faq-q::after{color:#9beaff}
+#certificaciones + .alt .faq-a p{color:rgba(236,250,255,.78)}
+#certificaciones + .alt .faq-item.open{
+  border-color:rgba(155,234,255,.5);
+  background:rgba(238,251,255,.11);
+}
+
+@media(max-width:900px){
+  #certificaciones + .alt .faq-item{padding:0 16px}
+}
+
 @media(prefers-reduced-motion:reduce){
   .snow i{animation:none!important;display:none}
   .snow::before,.snow::after,.hero::after{animation:none}
