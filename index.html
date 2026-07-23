@@ -2332,6 +2332,43 @@ header{transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
   overflow:visible;
 }
 
+/* =========================================================
+   V7 · BLINDAJE RESPONSIVE MÓVIL
+   Algunos navegadores iOS reservan un canal lateral para la
+   barra de desplazamiento. El contenido normal usaba el ancho
+   disponible y dejaba visible una franja blanca a la derecha.
+   ========================================================= */
+@media(max-width:900px){
+  html{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+  }
+  body{
+    width:100vw;
+    min-width:100vw;
+    max-width:none;
+    overflow-x:hidden;
+  }
+  .hero,
+  .stats,
+  .marquee,
+  body > section,
+  footer{
+    width:100vw;
+    min-width:100vw;
+    max-width:none;
+  }
+  header{
+    left:max(10px,env(safe-area-inset-left));
+    right:max(10px,env(safe-area-inset-right));
+  }
+  .mobile-actions{
+    left:max(8px,env(safe-area-inset-left));
+    right:max(8px,env(safe-area-inset-right));
+  }
+}
+
 @media(max-width:900px){
   #certificaciones + .alt .faq-item{padding:0 16px}
   .foot-brand-logo{width:235px;margin-bottom:18px}
