@@ -2304,8 +2304,37 @@ header{transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
   background:rgba(238,251,255,.11);
 }
 
+/* =========================================================
+   V6 · CONTRASTE REAL Y MARCA INVERTIDA EN EL FOOTER
+   ========================================================= */
+#certificaciones + .alt .faq-q::after{
+  color:#fff;
+  background:#062f46;
+  border:2px solid rgba(183,240,255,.82);
+  box-shadow:0 7px 18px rgba(0,25,38,.28);
+  font-weight:500;
+}
+#certificaciones + .alt .faq-item.open .faq-q::after{
+  color:#062f46;
+  background:#fff;
+  border-color:#fff;
+}
+
+.foot-brand-logo{
+  display:block;
+  width:min(100%,310px);
+  margin:0 0 22px;
+}
+.foot-brand-logo svg{
+  display:block;
+  width:100%;
+  height:auto;
+  overflow:visible;
+}
+
 @media(max-width:900px){
   #certificaciones + .alt .faq-item{padding:0 16px}
+  .foot-brand-logo{width:235px;margin-bottom:18px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -2577,7 +2606,22 @@ header{transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
 <footer>
   <div class="foot-grid">
     <div>
-      <img class="foot-logo" src="Logo_TERMOELECTRA.jpg" alt="Termoelectra" loading="lazy" decoding="async">
+      <div class="foot-brand-logo" role="img" aria-label="Termoelectra">
+        <svg viewBox="0 0 430 86" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="footerBrandGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ef2835"/>
+              <stop offset=".55" stop-color="#b94f79"/>
+              <stop offset="1" stop-color="#6d88c4"/>
+            </linearGradient>
+          </defs>
+          <path d="M66 17a29 29 0 1 0 0 52" fill="none" stroke="url(#footerBrandGradient)" stroke-width="12" stroke-linecap="butt"/>
+          <rect x="72" y="14" width="17" height="6" rx="2" fill="#ef2835" transform="rotate(18 72 14)"/>
+          <rect x="76" y="24" width="15" height="6" rx="2" fill="#ef2835" transform="rotate(18 76 24)"/>
+          <rect x="76" y="58" width="15" height="6" rx="2" fill="#7b8bc2" transform="rotate(-18 76 58)"/>
+          <text x="102" y="58" fill="#fff" font-family="Sora,Arial,sans-serif" font-size="32" font-weight="800" letter-spacing="-1.4">TERMOELECTRA</text>
+        </svg>
+      </div>
       <p>Somos especialistas en refrigeración, frío industrial y climatización. Instalación, reparación y mantenimiento con servicio técnico propio.</p>
     </div>
     <div>
