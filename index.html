@@ -1551,6 +1551,421 @@ header.is-scrolled{
   .svc-media{transform:none!important}
 }
 </style>
+<style>
+/* =========================================================
+   DIRECCIÓN VISUAL V3 · HIELO, ESCARCHA Y AIRE FRÍO
+   ========================================================= */
+:root{
+  --azul:#0b3b5c;
+  --azul2:#17688f;
+  --cian:#1aa8d7;
+  --cian-cl:#9beaff;
+  --rojo:#54c9ed;
+  --hielo:#f1faff;
+  --hielo2:#def3fb;
+  --gris:#597485;
+  --tinta:#102f42;
+  --linea:#d2e8f1;
+  --sombra:0 24px 70px rgba(11,74,107,.10);
+  --sombra-h:0 30px 90px rgba(11,74,107,.16);
+}
+body{
+  background:
+    radial-gradient(circle at 12% 18%,rgba(136,222,248,.11),transparent 28rem),
+    radial-gradient(circle at 88% 76%,rgba(198,241,253,.17),transparent 32rem),
+    #fff;
+}
+body::before{
+  background:
+    radial-gradient(circle at 8% 16%,rgba(120,214,240,.08),transparent 25rem),
+    radial-gradient(circle at 92% 72%,rgba(196,240,251,.1),transparent 28rem);
+}
+.scroll-progress{background:rgba(207,237,247,.7)}
+.scroll-progress span{
+  background:linear-gradient(90deg,#e9fbff,#5dcced,#b6efff);
+  box-shadow:0 0 16px rgba(84,201,237,.65);
+}
+
+/* Header como cristal helado, no como interfaz tecnológica */
+header,
+header.is-scrolled{
+  border-color:rgba(202,231,241,.9);
+  background:rgba(249,254,255,.95);
+  box-shadow:0 14px 46px rgba(11,74,107,.10)!important;
+}
+.nav-links a.is-active:not(.nav-cta){
+  color:var(--azul);
+  background:linear-gradient(135deg,#edfaff,#dff4fb);
+}
+.nav-links a.is-active:not(.nav-cta)::before{
+  width:18px;
+  height:2px;
+  border-radius:10px;
+  background:var(--cian);
+}
+.nav-cta{
+  background:linear-gradient(135deg,var(--azul2),var(--cian));
+  box-shadow:0 10px 28px rgba(26,168,215,.2);
+}
+.nav-cta:hover{background:linear-gradient(135deg,var(--azul),var(--azul2))}
+
+/* Hero inmersivo de refrigeración */
+.hero{
+  --hero-shift:0px;
+  min-height:950px;
+  background:
+    linear-gradient(90deg,rgba(5,42,66,.96) 0%,rgba(9,66,98,.88) 46%,rgba(9,66,98,.3) 78%,rgba(5,42,66,.18) 100%),
+    linear-gradient(0deg,rgba(5,42,66,.58),transparent 48%),
+    url('Foto principal.JPG') 58% center/cover no-repeat;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:0;
+  opacity:1;
+  clip-path:none;
+  background:
+    radial-gradient(circle at 72% 24%,rgba(225,251,255,.22),transparent 18rem),
+    linear-gradient(115deg,rgba(185,238,252,.07),transparent 45%);
+  transform:none;
+  mask-image:none;
+  animation:none;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  left:-8%;
+  right:-8%;
+  top:auto;
+  bottom:-115px;
+  width:auto;
+  height:270px;
+  border:0;
+  border-radius:50%;
+  opacity:.82;
+  background:
+    radial-gradient(ellipse at 30% 50%,rgba(220,249,255,.34),transparent 44%),
+    radial-gradient(ellipse at 72% 42%,rgba(181,235,249,.25),transparent 40%);
+  filter:blur(22px);
+  box-shadow:none;
+  animation:coldMist 9s ease-in-out infinite alternate;
+}
+@keyframes coldMist{
+  from{transform:translate3d(-2%,0,0) scale(1)}
+  to{transform:translate3d(2%,-14px,0) scale(1.04)}
+}
+.hero-inner{max-width:1320px;padding-top:180px}
+.hero-inner::before{
+  width:92px;
+  background:linear-gradient(90deg,#e8fbff,#67d0ef,#fff);
+  box-shadow:0 0 18px rgba(155,234,255,.42);
+}
+.hero-inner::after{
+  background:linear-gradient(90deg,rgba(210,247,255,.55),transparent);
+}
+.hero h1{
+  max-width:940px;
+  text-shadow:0 15px 45px rgba(0,31,48,.26);
+}
+.hero-title .w:first-child{display:inline-block}
+.hero h1 .hl{color:#b8f0ff}
+.hero p{
+  border-left-color:rgba(155,234,255,.75);
+  color:rgba(242,252,255,.9);
+}
+.hero .eyebrow{
+  border-color:rgba(206,245,255,.34);
+  background:rgba(221,248,255,.11);
+  box-shadow:inset 0 1px rgba(255,255,255,.2);
+}
+.hero-btns{
+  width:auto;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  backdrop-filter:none;
+}
+.hero .btn-primary{
+  color:var(--azul);
+  background:linear-gradient(135deg,#fff,#dff7ff);
+  box-shadow:0 14px 40px rgba(194,241,253,.2);
+}
+.hero .btn-primary:hover{color:#fff;background:var(--cian)}
+.hero .btn-ghost{
+  border-color:rgba(220,249,255,.55);
+  background:rgba(218,247,255,.1);
+}
+
+/* Copos, cristales y niebla fría */
+.snow{
+  display:block;
+  z-index:1;
+  overflow:hidden;
+  opacity:1;
+}
+.snow::before,
+.snow::after{
+  content:"";
+  position:absolute;
+  left:-10%;
+  right:-10%;
+  bottom:-35px;
+  height:150px;
+  pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,rgba(226,250,255,.25),transparent 62%);
+  filter:blur(18px);
+  animation:frostBreathe 7s ease-in-out infinite alternate;
+}
+.snow::after{bottom:10%;opacity:.35;animation-delay:-3s}
+.snow i{
+  position:absolute;
+  top:-12vh;
+  display:block;
+  color:rgba(244,253,255,.92);
+  font-style:normal;
+  line-height:1;
+  text-shadow:0 0 10px rgba(198,242,255,.8);
+  will-change:transform,opacity;
+  animation:snowfall var(--fall-time,12s) linear infinite;
+}
+@keyframes snowfall{
+  0%{transform:translate3d(0,-12vh,0) rotate(0deg);opacity:0}
+  8%{opacity:var(--flake-opacity,.8)}
+  48%{transform:translate3d(var(--drift,18px),48vh,0) rotate(170deg)}
+  90%{opacity:var(--flake-opacity,.8)}
+  100%{transform:translate3d(var(--drift-end,-12px),112vh,0) rotate(360deg);opacity:0}
+}
+@keyframes frostBreathe{
+  from{transform:translateX(-2%) scaleX(.96);opacity:.45}
+  to{transform:translateX(2%) scaleX(1.04);opacity:.8}
+}
+
+/* Cifras congeladas */
+.stats{
+  background-position:center;
+}
+.stats-overlay{
+  background:
+    linear-gradient(100deg,rgba(7,53,79,.94),rgba(19,109,145,.74)),
+    linear-gradient(0deg,rgba(4,45,68,.42),transparent);
+}
+.stats::before{
+  background:linear-gradient(90deg,#e5faff,var(--cian-cl),#fff);
+  box-shadow:0 0 16px rgba(155,234,255,.45);
+}
+.stats-inner::before{
+  border-color:rgba(213,247,255,.22);
+  box-shadow:inset 0 0 40px rgba(195,241,252,.04);
+}
+.stat{
+  border-color:rgba(216,248,255,.25);
+  background:linear-gradient(145deg,rgba(222,248,255,.16),rgba(7,66,95,.36));
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.2),
+    0 22px 55px rgba(0,39,58,.16);
+}
+.stat:last-child{border-color:rgba(216,248,255,.25)}
+.stat::before{
+  content:"❄";
+  top:18px;
+  right:20px;
+  width:auto;
+  height:auto;
+  border:0;
+  color:rgba(205,246,255,.72);
+  font-size:1rem;
+  box-shadow:none;
+}
+.stat::after{
+  right:-24px;
+  bottom:-28px;
+  width:120px;
+  height:120px;
+  border:1px solid rgba(203,245,255,.12);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(212,248,255,.12),transparent 66%);
+}
+.stat .num .u{color:var(--cian-cl)}
+
+.marquee{
+  background:linear-gradient(90deg,#0c496b,#167da6,#0c496b);
+  box-shadow:inset 0 1px rgba(255,255,255,.12);
+}
+.marquee-track i{color:#c8f4ff;opacity:.85}
+
+/* Secciones claras con sensación de aire frío */
+#industrial,
+#comercial,
+.process-sec,
+#certificaciones{
+  background:
+    radial-gradient(circle at 92% 16%,rgba(160,227,246,.13),transparent 24rem),
+    #fff;
+}
+#industrial::before{
+  border-color:rgba(102,203,232,.17);
+  box-shadow:0 0 0 70px rgba(105,207,235,.025);
+}
+.eyebrow-sec{color:#148db9}
+.eyebrow-sec::before{
+  background:linear-gradient(90deg,#8ee1f7,#1aa8d7);
+}
+.svc-media::before{
+  background:linear-gradient(145deg,#eaf9fd,#d8eff7);
+}
+.svc-media::after{
+  background:linear-gradient(90deg,#e8fbff,#5ac9e9,#b9effc);
+  box-shadow:0 0 14px rgba(84,201,237,.28);
+}
+.svc-media img{
+  border:1px solid rgba(211,238,246,.9);
+  filter:saturate(.9) contrast(1.03) brightness(1.02);
+  box-shadow:0 26px 70px rgba(19,98,130,.12);
+}
+.svc-media .tag{
+  border-color:rgba(211,239,247,.95);
+  background:rgba(247,253,255,.94);
+  box-shadow:0 12px 36px rgba(15,89,118,.1);
+}
+#industrial .svc-body::before,
+#comercial .svc-body::before{
+  background:linear-gradient(#c8f3ff,#43bee3,transparent);
+}
+
+.alt{
+  background:
+    radial-gradient(circle at 12% 14%,rgba(151,222,242,.14),transparent 27rem),
+    linear-gradient(180deg,#f5fcff,#eaf7fb);
+}
+.alt .svc{
+  border-color:#d4ebf3;
+  background:rgba(255,255,255,.9);
+  box-shadow:0 22px 65px rgba(22,104,138,.08);
+}
+.alt .svc.rev{
+  border-color:#17688f;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(155,234,255,.15),transparent 20rem),
+    linear-gradient(145deg,#0c486a,#176f95);
+}
+.alt .svc::after{
+  border-color:rgba(88,198,229,.16);
+  box-shadow:0 0 0 30px rgba(103,207,234,.025);
+}
+
+/* Carrusel como cámara fría, no pantalla tecnológica */
+.carousel-sec{
+  background:
+    radial-gradient(circle at 86% 12%,rgba(175,235,251,.19),transparent 30rem),
+    linear-gradient(145deg,#083956,#126b91);
+}
+.carousel-sec::before{
+  opacity:.18;
+  background:
+    radial-gradient(circle at 16px 16px,rgba(231,251,255,.4) 1px,transparent 2px);
+  background-size:38px 38px;
+}
+.slide{
+  border-color:rgba(215,247,255,.2);
+  box-shadow:0 24px 70px rgba(0,43,61,.28);
+}
+.slide .cap{background:linear-gradient(transparent,rgba(5,48,70,.97))}
+.slide .cap small{color:#a7edff}
+.car-btn:hover{background:#58c8e8;border-color:#8be2f7}
+
+/* Proceso y certificaciones con acabado helado */
+.step{
+  border-color:#d7ebf3;
+  background:linear-gradient(145deg,#fff,#f1faff);
+  box-shadow:0 18px 55px rgba(18,103,137,.07);
+}
+.step::before{
+  content:"";
+  position:absolute;
+  top:-36px;
+  right:-36px;
+  width:100px;
+  height:100px;
+  border:1px solid rgba(75,190,222,.12);
+  border-radius:50%;
+}
+.step::after{background:linear-gradient(90deg,#9de9fa,#24abd8)}
+.step-num{color:#1aa8d7}
+.step:hover .step-num{color:#0b729d}
+.cert{
+  border-color:#d4eaf2;
+  background:linear-gradient(145deg,#fff,#f0faff);
+  box-shadow:0 15px 45px rgba(19,104,138,.06);
+}
+.cert::before{background:linear-gradient(90deg,#b4eefc,#37b8de)}
+.cert::after{background:#def4fb;color:#158bb7}
+
+/* Galería y contacto dentro de la misma identidad fría */
+.gallery a{box-shadow:0 16px 48px rgba(15,91,121,.12)}
+.gallery a::after{background:linear-gradient(transparent,rgba(5,52,75,.9))}
+.gallery a::before{border-color:rgba(220,249,255,.5)}
+.lb{
+  background:
+    radial-gradient(circle at 18% 18%,rgba(95,202,232,.18),transparent 28rem),
+    rgba(3,35,51,.97);
+}
+.contact-info{
+  background:
+    radial-gradient(circle at 12% 90%,rgba(174,235,251,.22),transparent 19rem),
+    linear-gradient(145deg,#0b496b,#15749b);
+}
+.contact-box{
+  border-color:#d2e8f1;
+  box-shadow:0 30px 100px rgba(14,91,122,.12);
+}
+.cf-field input,.cf-field textarea{background:#f2faff;border-color:#d4e9f1}
+footer{background:#073047}
+
+@media(max-width:900px){
+  header,
+  header.is-scrolled{background:rgba(250,254,255,.98)}
+  .nav-links{
+    background:
+      radial-gradient(circle at 100% 0,rgba(116,211,238,.17),transparent 19rem),
+      linear-gradient(180deg,#fff,#f1faff);
+  }
+  .nav-links::before{background:linear-gradient(90deg,#b8effb,#35b6dd,transparent)}
+  .nav-links .nav-cta{background:linear-gradient(135deg,var(--azul2),var(--cian))}
+  .hero{
+    min-height:880px;
+    background:
+      linear-gradient(180deg,rgba(6,49,73,.5),rgba(6,49,73,.96) 77%),
+      linear-gradient(90deg,rgba(6,49,73,.66),transparent),
+      url('Foto principal.JPG') 60% center/cover no-repeat;
+  }
+  .hero::before{
+    background:radial-gradient(circle at 75% 18%,rgba(226,250,255,.2),transparent 17rem);
+  }
+  .hero::after{
+    left:-15%;
+    right:-15%;
+    bottom:-120px;
+    width:auto;
+    height:260px;
+    background:radial-gradient(ellipse,rgba(220,249,255,.34),transparent 64%);
+    animation:coldMist 9s ease-in-out infinite alternate;
+  }
+  .hero-btns{padding:0;background:transparent}
+  .mobile-actions{
+    border-color:#cfe8f1;
+    background:rgba(248,254,255,.96);
+  }
+  .mobile-call{background:linear-gradient(135deg,#0d5578,#187da3)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .snow i{animation:none!important;display:none}
+  .snow::before,.snow::after,.hero::after{animation:none}
+}
+</style>
 </head>
 <body>
 
@@ -1912,6 +2327,28 @@ addEventListener('resize',()=>{
   updatePageChrome();
 });
 updatePageChrome();
+
+// Copos de nieve ligeros: cada uno tiene tamaño, velocidad y deriva propios
+const snow=document.getElementById('snow');
+if(snow&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const flakeShapes=['❄','❅','❆','•'];
+  const flakeCount=innerWidth<700?24:38;
+  const snowFragment=document.createDocumentFragment();
+  for(let i=0;i<flakeCount;i++){
+    const flake=document.createElement('i');
+    flake.textContent=flakeShapes[Math.floor(Math.random()*flakeShapes.length)];
+    flake.style.left=Math.random()*100+'%';
+    flake.style.fontSize=(Math.random()*12+6)+'px';
+    const drift=Math.random()*70-35;
+    flake.style.setProperty('--fall-time',(Math.random()*9+10)+'s');
+    flake.style.setProperty('--drift',drift+'px');
+    flake.style.setProperty('--drift-end',(-drift*.6)+'px');
+    flake.style.setProperty('--flake-opacity',(Math.random()*.45+.4).toFixed(2));
+    flake.style.animationDelay=(-Math.random()*18)+'s';
+    snowFragment.appendChild(flake);
+  }
+  snow.appendChild(snowFragment);
+}
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
