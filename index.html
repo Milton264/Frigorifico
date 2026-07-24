@@ -3620,6 +3620,46 @@ header.is-scrolled{
   .showcase-visual img{transform:none}
 }
 </style>
+<style>
+/* V13 · MARCO ESTABLE PARA LAS TRES FOTOGRAFÍAS */
+@media(min-width:901px){
+  .service-showcase{
+    height:470px;
+    min-height:470px;
+  }
+  .showcase-visual,
+  .showcase-panel{
+    height:470px;
+    min-height:0;
+  }
+  .showcase-visual img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    min-height:0;
+    aspect-ratio:auto;
+    object-fit:cover;
+  }
+}
+@media(max-width:900px){
+  .service-showcase{height:auto}
+  .showcase-visual{
+    height:280px;
+    min-height:280px;
+  }
+  .showcase-visual img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%!important;
+    min-height:0!important;
+    aspect-ratio:auto!important;
+    object-fit:cover;
+  }
+  .showcase-panel{min-height:355px}
+}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -4189,7 +4229,8 @@ const showcaseData={
     title:'Refrigeración y Frío Industrial',
     text:'Instalación y mantenimiento de sistemas de Refrigeración Industrial para naves y procesos productivos, además de reparación y SAT propio.',
     image:'foto frio industrial.jpg',
-    alt:'Instalación de Frío Industrial'
+    alt:'Instalación de Frío Industrial',
+    position:'50% 50%'
   },
   camaras:{
     index:'ÁREA 02',
@@ -4197,7 +4238,8 @@ const showcaseData={
     title:'Cámaras de Refrigeración',
     text:'Diseño, instalación y mantenimiento de Cámaras de Refrigeración industriales y comerciales, junto con servicio técnico para averías.',
     image:'P1010037.JPG',
-    alt:'Instalación de una Cámara Frigorífica'
+    alt:'Instalación de una Cámara Frigorífica',
+    position:'50% 45%'
   },
   comercial:{
     index:'ÁREA 03',
@@ -4205,7 +4247,8 @@ const showcaseData={
     title:'Frío Comercial',
     text:'Soluciones de Refrigeración Comercial para comercios, supermercados e hipermercados, con reparación, mantenimiento y servicio técnico propio.',
     image:'frio comercial.jpeg',
-    alt:'Cámara de Refrigeración Comercial'
+    alt:'Cámara de Refrigeración Comercial',
+    position:'50% 50%'
   }
 };
 const showcaseVisual=document.getElementById('showcaseVisual');
@@ -4230,6 +4273,7 @@ function selectShowcase(key){
   setTimeout(()=>{
     showcaseImage.src=item.image;
     showcaseImage.alt=item.alt;
+    showcaseImage.style.objectPosition=item.position;
     showcaseIndex.textContent=item.index;
     showcaseCaption.textContent=item.caption;
     showcaseTitle.textContent=item.title;
