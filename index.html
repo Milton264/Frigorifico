@@ -2685,6 +2685,435 @@ footer li a:hover{color:#0b8fbd}
   .cold-node{animation:none!important}
 }
 </style>
+<style>
+/* =========================================================
+   V10 · CONTRASTE, INTERACCIÓN Y DENSIDAD VISUAL
+   No añade capacidades comerciales: reorganiza visualmente
+   la información ya presente en la landing.
+   ========================================================= */
+
+/* Cabecera: el fondo del JPG del logo desaparece visualmente
+   al integrarse sobre una superficie blanca real. */
+header,
+header.is-scrolled{
+  padding:11px 18px 0;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.nav{
+  position:relative;
+  max-width:1540px;
+  min-height:72px;
+  overflow:visible;
+  border:1px solid #d6e4ea;
+  border-radius:19px;
+  background:#fff;
+  box-shadow:0 16px 45px rgba(3,37,57,.14);
+}
+.nav::before{
+  content:"";
+  position:absolute;
+  top:-1px;
+  left:22px;
+  width:190px;
+  height:3px;
+  border-radius:0 0 6px 6px;
+  background:linear-gradient(90deg,#d62e3a 0 31%,#7669a6 52%,#159ec5 100%);
+}
+.nav-logo{
+  background:#fff;
+  mix-blend-mode:multiply;
+  filter:contrast(1.06) saturate(1.04);
+}
+.nav-links a:not(.nav-cta){
+  border-radius:999px;
+  padding:10px 16px;
+}
+.nav-links a.is-active:not(.nav-cta){
+  color:#073b59;
+  background:#eef8fc;
+}
+.nav-links a.is-active:not(.nav-cta)::before{
+  background:linear-gradient(90deg,#d62e3a,#159ec5);
+}
+.nav-cta{
+  background:linear-gradient(135deg,#096b91,#169fc7);
+  box-shadow:0 9px 24px rgba(11,111,150,.24);
+}
+
+/* El recurso editorial ahora funciona como un explorador,
+   no como una imagen estática dentro de una caja vacía. */
+.cold-system-visual{
+  grid-template-columns:minmax(285px,.78fr) minmax(0,1.35fr);
+  gap:28px;
+  padding:20px;
+  border-color:#c9e1ea;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.98) 0 35%,rgba(235,248,252,.96) 35%),
+    #fff;
+  box-shadow:0 24px 72px rgba(4,56,78,.10);
+}
+.cold-system-copy{padding:12px 6px 12px 8px}
+.cold-system-copy p{
+  min-height:82px;
+  transition:opacity .2s ease,transform .2s ease;
+}
+.cold-system-copy p.is-changing{
+  opacity:0;
+  transform:translateY(5px);
+}
+.system-controls{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-top:22px;
+}
+.system-control{
+  display:grid;
+  grid-template-columns:31px 1fr;
+  align-items:center;
+  gap:9px;
+  min-height:48px;
+  padding:8px 10px;
+  border:1px solid #cfe3ea;
+  border-radius:12px;
+  color:#17475e;
+  background:rgba(255,255,255,.82);
+  font-family:'Sora',sans-serif;
+  font-size:.72rem;
+  font-weight:700;
+  text-align:left;
+  cursor:pointer;
+  transition:transform .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease;
+}
+.system-control span{
+  display:grid;
+  place-items:center;
+  width:31px;
+  height:31px;
+  border-radius:9px;
+  color:#087ca7;
+  background:#e5f7fc;
+  font-size:.65rem;
+}
+.system-control:hover,
+.system-control:focus-visible{
+  transform:translateY(-2px);
+  border-color:#69c5df;
+  outline:none;
+}
+.system-control[aria-selected="true"]{
+  color:#fff;
+  border-color:#086c94;
+  background:linear-gradient(135deg,#073e5c,#0a86b2);
+  box-shadow:0 10px 24px rgba(4,93,128,.18);
+}
+.system-control[aria-selected="true"] span{
+  color:#073e5c;
+  background:#fff;
+}
+.cold-system-media{
+  --tilt-x:0px;
+  --tilt-y:0px;
+  min-height:390px;
+  cursor:crosshair;
+}
+.cold-system-media img{
+  height:100%;
+  min-height:390px;
+  aspect-ratio:auto;
+  transform:scale(1.025) translate(var(--tilt-x),var(--tilt-y));
+  transition:transform .32s ease,filter .32s ease;
+}
+.cold-node{
+  display:block;
+  padding:0;
+  cursor:pointer;
+  transition:transform .22s ease,background .22s ease;
+}
+.cold-node:hover,
+.cold-node:focus-visible,
+.cold-node.is-active{
+  transform:scale(1.42);
+  outline:none;
+  background:#fff;
+  box-shadow:0 0 0 7px rgba(79,204,235,.28),0 0 30px rgba(112,226,255,.9);
+}
+.cold-node span{
+  position:absolute;
+  left:50%;
+  bottom:calc(100% + 13px);
+  min-width:max-content;
+  padding:6px 9px;
+  border-radius:8px;
+  color:#073b59;
+  background:#fff;
+  box-shadow:0 7px 20px rgba(0,0,0,.22);
+  font-family:'Sora',sans-serif;
+  font-size:.58rem;
+  font-weight:800;
+  opacity:0;
+  pointer-events:none;
+  transform:translate(-50%,5px) scale(.72);
+  transition:.2s ease;
+}
+.cold-node:hover span,
+.cold-node:focus-visible span,
+.cold-node.is-active span{
+  opacity:1;
+  transform:translate(-50%,0) scale(.72);
+}
+.cold-node.n4{
+  left:46%;
+  bottom:15%;
+  animation-delay:1.7s;
+  background:#8f79c0;
+}
+.system-readout{
+  position:absolute;
+  z-index:4;
+  left:18px;
+  bottom:17px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  max-width:calc(100% - 36px);
+  padding:9px 12px;
+  border:1px solid rgba(255,255,255,.48);
+  border-radius:12px;
+  color:#fff;
+  background:rgba(3,35,51,.72);
+  box-shadow:0 10px 28px rgba(0,0,0,.22);
+  backdrop-filter:blur(12px);
+  pointer-events:none;
+}
+.system-readout small{
+  color:#9deaff;
+  font-family:'Sora',sans-serif;
+  font-size:.59rem;
+  font-weight:800;
+  letter-spacing:.11em;
+}
+.system-readout strong{
+  font-family:'Sora',sans-serif;
+  font-size:.78rem;
+}
+
+/* Tarjetas: la foto llena toda la columna y la información ya
+   existente se transforma en módulos explorables. */
+.alt .svc{
+  position:relative;
+  overflow:hidden;
+}
+.alt .svc::after{
+  content:"";
+  position:absolute;
+  right:-70px;
+  bottom:-95px;
+  width:210px;
+  height:210px;
+  border:1px solid rgba(41,171,211,.14);
+  border-radius:50%;
+  box-shadow:0 0 0 35px rgba(41,171,211,.025);
+  pointer-events:none;
+}
+.alt .svc.rev::after{border-color:rgba(255,255,255,.08)}
+.media-index{
+  position:absolute;
+  z-index:4;
+  top:18px;
+  left:20px;
+  color:rgba(255,255,255,.82);
+  font-family:'Sora',sans-serif;
+  font-size:clamp(2.1rem,4vw,3.6rem);
+  font-weight:800;
+  line-height:1;
+  letter-spacing:-.08em;
+  text-shadow:0 4px 24px rgba(0,0,0,.38);
+  pointer-events:none;
+}
+.media-scan{
+  position:absolute;
+  z-index:3;
+  top:-12%;
+  bottom:-12%;
+  left:-32%;
+  width:18%;
+  opacity:0;
+  background:linear-gradient(90deg,transparent,rgba(204,246,255,.42),transparent);
+  filter:blur(6px);
+  transform:skewX(-13deg);
+  pointer-events:none;
+}
+.svc-media:hover .media-scan{animation:mediaScan 1.25s ease}
+@keyframes mediaScan{
+  0%{left:-32%;opacity:0}
+  18%{opacity:1}
+  100%{left:118%;opacity:0}
+}
+.alt .svc .svc-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin:18px 0;
+}
+.alt .svc .svc-list li{
+  min-height:62px;
+  padding:12px 12px 12px 42px;
+  border:1px solid #d7e7ed;
+  border-radius:13px;
+  background:linear-gradient(145deg,#fff,#f4fafc);
+  cursor:default;
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease;
+}
+.alt .svc .svc-list li::before{left:12px;top:14px}
+.alt .svc .svc-list li::after{left:18px;top:18px}
+.alt .svc .svc-list li:hover,
+.alt .svc .svc-list li:focus-visible,
+.alt .svc .svc-list li.is-active{
+  z-index:1;
+  transform:translateY(-3px);
+  border-color:#60c5df;
+  background:#eefaff;
+  box-shadow:0 10px 25px rgba(10,112,151,.11);
+  outline:none;
+}
+.alt .svc .svc-list li:last-child:nth-child(odd){grid-column:1/-1}
+.alt .svc.rev .svc-list li{
+  border-color:rgba(255,255,255,.12);
+  background:rgba(255,255,255,.055);
+}
+.alt .svc.rev .svc-list li:hover,
+.alt .svc.rev .svc-list li:focus-visible,
+.alt .svc.rev .svc-list li.is-active{
+  border-color:rgba(144,228,250,.65);
+  background:rgba(77,193,224,.15);
+  box-shadow:0 12px 26px rgba(0,0,0,.16);
+}
+.seo-detail{
+  padding:15px 17px 15px 20px;
+  border:1px solid #d3e8ef;
+  border-left:4px solid #25add5;
+  border-radius:0 14px 14px 0;
+  background:linear-gradient(90deg,#eefaff,rgba(255,255,255,.7));
+}
+.alt .svc.rev .seo-detail{
+  border-color:rgba(255,255,255,.15);
+  border-left-color:#89e1f5;
+  background:rgba(255,255,255,.06);
+}
+.detail-toggle{
+  display:none;
+  align-items:center;
+  gap:7px;
+  margin-top:8px;
+  padding:8px 12px;
+  border:1px solid #cbe5ee;
+  border-radius:999px;
+  color:#075b7e;
+  background:#fff;
+  font-family:'Sora',sans-serif;
+  font-size:.72rem;
+  font-weight:700;
+}
+.detail-toggle::after{content:"+";font-size:1rem;line-height:1}
+.detail-toggle[aria-expanded="true"]::after{content:"−"}
+.alt .svc.rev .detail-toggle{
+  color:#fff;
+  border-color:rgba(255,255,255,.25);
+  background:rgba(255,255,255,.08);
+}
+
+@media(min-width:901px){
+  #instalacion-camaras-frigorificas,
+  #reparacion-camaras-frigorificas,
+  #mantenimiento-camaras-frigorificas{align-items:stretch}
+  #instalacion-camaras-frigorificas .svc-media,
+  #reparacion-camaras-frigorificas .svc-media,
+  #mantenimiento-camaras-frigorificas .svc-media{
+    align-self:stretch;
+    height:auto!important;
+    min-height:100%!important;
+  }
+  #instalacion-camaras-frigorificas .svc-media img,
+  #reparacion-camaras-frigorificas .svc-media img,
+  #mantenimiento-camaras-frigorificas .svc-media img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%!important;
+    min-height:100%!important;
+    aspect-ratio:auto;
+    object-fit:cover;
+  }
+}
+
+@media(max-width:900px){
+  header,
+  header.is-scrolled{
+    left:0!important;
+    right:0!important;
+    padding:9px max(10px,env(safe-area-inset-right)) 0 max(10px,env(safe-area-inset-left));
+  }
+  .nav{min-height:66px;padding:8px 16px;border-radius:16px}
+  .nav::before{left:16px;width:132px}
+  .nav-logo{width:158px;height:44px}
+  .cold-system-visual{
+    background:linear-gradient(180deg,#fff 0 39%,#eaf8fc 39%);
+  }
+  .cold-system-copy p{min-height:0}
+  .system-controls{margin-top:17px}
+  .cold-system-media{min-height:260px;cursor:default}
+  .cold-system-media img{min-height:260px}
+  .system-readout{left:12px;bottom:12px}
+  .alt .svc .svc-list{grid-template-columns:1fr;gap:7px}
+  .alt .svc .svc-list li,
+  .alt .svc .svc-list li:last-child:nth-child(odd){grid-column:auto;min-height:0}
+  #instalacion-camaras-frigorificas .svc-media,
+  #reparacion-camaras-frigorificas .svc-media,
+  #mantenimiento-camaras-frigorificas .svc-media{
+    height:auto!important;
+    min-height:0!important;
+  }
+  #instalacion-camaras-frigorificas .svc-media img,
+  #reparacion-camaras-frigorificas .svc-media img,
+  #mantenimiento-camaras-frigorificas .svc-media img{
+    position:relative;
+    inset:auto;
+    height:auto!important;
+    min-height:0!important;
+    aspect-ratio:4/3;
+  }
+  .seo-detail{
+    max-height:94px;
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(#000 0 58%,transparent 100%);
+    mask-image:linear-gradient(#000 0 58%,transparent 100%);
+    transition:max-height .35s ease;
+  }
+  .seo-detail.is-expanded{
+    max-height:760px;
+    -webkit-mask-image:none;
+    mask-image:none;
+  }
+  .detail-toggle{display:inline-flex}
+  .media-index{top:14px;left:15px;font-size:2.2rem}
+}
+
+@media(max-width:460px){
+  .system-control{grid-template-columns:27px 1fr;min-height:44px;padding:7px;font-size:.65rem}
+  .system-control span{width:27px;height:27px}
+  .cold-node span{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .media-scan{display:none}
+  .cold-system-media img{transform:none!important}
+  .system-control,
+  .alt .svc .svc-list li{transition:none}
+}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -2778,15 +3207,23 @@ footer li a:hover{color:#0b8fbd}
     </div>
     <aside class="cold-system-visual reveal" aria-label="Recurso visual del funcionamiento de un sistema frigorífico">
       <div class="cold-system-copy">
-        <small>Imagen editorial generada</small>
+        <small>Recorrido interactivo</small>
         <h3>El frío es un sistema, no una sola máquina.</h3>
-        <p>Evaporación, compresión, condensación y control trabajan de forma coordinada. La animación destaca ese recorrido sin sustituir el diagnóstico ni el cálculo técnico de cada instalación.</p>
+        <p id="systemDescription">Dentro de la cámara, el evaporador absorbe calor y ayuda a mantener el recinto a la temperatura configurada.</p>
+        <div class="system-controls" role="tablist" aria-label="Partes del recorrido frigorífico">
+          <button class="system-control" type="button" role="tab" aria-selected="true" data-system-step="camara"><span>01</span>Cámara</button>
+          <button class="system-control" type="button" role="tab" aria-selected="false" data-system-step="compresion"><span>02</span>Compresión</button>
+          <button class="system-control" type="button" role="tab" aria-selected="false" data-system-step="condensacion"><span>03</span>Condensación</button>
+          <button class="system-control" type="button" role="tab" aria-selected="false" data-system-step="control"><span>04</span>Control</button>
+        </div>
       </div>
-      <div class="cold-system-media">
+      <div class="cold-system-media" id="coldSystemMedia" data-active="camara">
         <img src="ciclo-frigorifico-3d.webp" alt="Ilustración tridimensional del ciclo de refrigeración industrial" loading="lazy" decoding="async" width="1600" height="900">
-        <span class="cold-node n1" aria-hidden="true"></span>
-        <span class="cold-node n2" aria-hidden="true"></span>
-        <span class="cold-node n3" aria-hidden="true"></span>
+        <button class="cold-node n1 is-active" type="button" data-system-step="camara" aria-label="Mostrar Cámara"><span>Cámara</span></button>
+        <button class="cold-node n2" type="button" data-system-step="compresion" aria-label="Mostrar Compresión"><span>Compresión</span></button>
+        <button class="cold-node n3" type="button" data-system-step="condensacion" aria-label="Mostrar Condensación"><span>Condensación</span></button>
+        <button class="cold-node n4" type="button" data-system-step="control" aria-label="Mostrar Control"><span>Control</span></button>
+        <div class="system-readout" aria-live="polite"><small id="systemKicker">01 · ABSORCIÓN</small><strong id="systemLabel">Cámara</strong></div>
       </div>
     </aside>
   </div>
@@ -2812,6 +3249,8 @@ footer li a:hover{color:#0b8fbd}
     <div class="svc reveal" id="instalacion-camaras-frigorificas">
       <div class="svc-media">
         <img src="P1010037.JPG" alt="Instalación de una cámara frigorífica a medida" loading="lazy" decoding="async">
+        <span class="media-index" aria-hidden="true">01</span>
+        <span class="media-scan" aria-hidden="true"></span>
         <span class="tag">Instalación a medida</span>
       </div>
       <div class="svc-body">
@@ -2824,12 +3263,15 @@ footer li a:hover{color:#0b8fbd}
           <li>Equipos de compresión y evaporación de alta eficiencia</li>
         </ul>
         <p>Aseguramos una instalación rápida, fiable y conforme a la normativa vigente.</p>
-        <p class="seo-detail"><strong>Proyecto completo:</strong> como empresa de cámaras frigoríficas, estudiamos el espacio, el producto, la temperatura de conservación y el ritmo de trabajo antes de iniciar el montaje de cámaras frigoríficas. Tanto si necesitas instalar una cámara frigorífica nueva como ampliar una existente, nuestros instaladores de cámaras frigoríficas coordinan paneles, puertas, evaporación, compresión, control y puesta en marcha.</p>
+        <p class="seo-detail" id="detail-install"><strong>Proyecto completo:</strong> como empresa de cámaras frigoríficas, estudiamos el espacio, el producto, la temperatura de conservación y el ritmo de trabajo antes de iniciar el montaje de cámaras frigoríficas. Tanto si necesitas instalar una cámara frigorífica nueva como ampliar una existente, nuestros instaladores de cámaras frigoríficas coordinan paneles, puertas, evaporación, compresión, control y puesta en marcha.</p>
+        <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-install">Ver detalle</button>
       </div>
     </div>
     <div class="svc rev reveal" id="reparacion-camaras-frigorificas">
       <div class="svc-media">
         <img src="foto SAT.jpg" alt="Servicio técnico y reparación de cámara frigorífica" loading="lazy" decoding="async">
+        <span class="media-index" aria-hidden="true">02</span>
+        <span class="media-scan" aria-hidden="true"></span>
         <span class="tag">SAT · urgencias 24h</span>
       </div>
       <div class="svc-body">
@@ -2842,12 +3284,15 @@ footer li a:hover{color:#0b8fbd}
           <li>Fallos eléctricos o electrónicos</li>
         </ul>
         <p>Disponemos de técnicos certificados y repuestos rápidos para minimizar los tiempos de inactividad, con servicio de urgencias para cámaras frigoríficas y cuartos fríos.</p>
-        <p class="seo-detail"><strong>Diagnóstico y reparación:</strong> cada reparación de cámara frigorífica empieza con una revisión de temperatura, presiones, refrigerante, compresores, evaporadores y cuadro eléctrico. Si necesitas reparar una cámara frigorífica o atender una avería, nuestro SAT de cámara frigorífica también cubre la reparación de cuartos fríos y de equipos frigoríficos industriales, incluyendo urgencias cuando existe riesgo para el producto o la continuidad del negocio.</p>
+        <p class="seo-detail" id="detail-repair"><strong>Diagnóstico y reparación:</strong> cada reparación de cámara frigorífica empieza con una revisión de temperatura, presiones, refrigerante, compresores, evaporadores y cuadro eléctrico. Si necesitas reparar una cámara frigorífica o atender una avería, nuestro SAT de cámara frigorífica también cubre la reparación de cuartos fríos y de equipos frigoríficos industriales, incluyendo urgencias cuando existe riesgo para el producto o la continuidad del negocio.</p>
+        <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-repair">Ver detalle</button>
       </div>
     </div>
     <div class="svc reveal" id="mantenimiento-camaras-frigorificas">
       <div class="svc-media">
         <img src="Mantenimiento.jpg" alt="Mantenimiento preventivo de cámaras de refrigeración" loading="lazy" decoding="async">
+        <span class="media-index" aria-hidden="true">03</span>
+        <span class="media-scan" aria-hidden="true"></span>
         <span class="tag">Contratos de mantenimiento</span>
       </div>
       <div class="svc-body">
@@ -2861,7 +3306,8 @@ footer li a:hover{color:#0b8fbd}
           <li>Ajuste de componentes eléctricos y electrónicos</li>
         </ul>
         <p>Te ayudamos a cumplir la normativa, reducir el consumo energético y garantizar la seguridad alimentaria de tus productos.</p>
-        <p class="seo-detail"><strong>Mantenimiento adaptado:</strong> ofrecemos contrato de mantenimiento de cámaras frigoríficas para instalaciones industriales y comerciales. Como empresa de mantenimiento de cámaras, combinamos mantenimiento de frío industrial, mantenimiento de refrigeración comercial y seguimiento preventivo para detectar suciedad, desgaste, fugas o desviaciones antes de que provoquen una parada.</p>
+        <p class="seo-detail" id="detail-maintenance"><strong>Mantenimiento adaptado:</strong> ofrecemos contrato de mantenimiento de cámaras frigoríficas para instalaciones industriales y comerciales. Como empresa de mantenimiento de cámaras, combinamos mantenimiento de frío industrial, mantenimiento de refrigeración comercial y seguimiento preventivo para detectar suciedad, desgaste, fugas o desviaciones antes de que provoquen una parada.</p>
+        <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-maintenance">Ver detalle</button>
       </div>
     </div>
   </div>
@@ -3134,6 +3580,102 @@ const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   entry.target.classList.toggle('is-near',entry.isIntersecting);
 }),{threshold:.3,rootMargin:'-8% 0px -8% 0px'});
 document.querySelectorAll('.svc-media').forEach(media=>mediaObserver.observe(media));
+
+// Explorador del circuito: mismos conceptos de la sección,
+// presentados de forma seleccionable con ratón, teclado o toque.
+const systemData={
+  camara:{
+    kicker:'01 · ABSORCIÓN',
+    label:'Cámara',
+    description:'Dentro de la cámara, el evaporador absorbe calor y ayuda a mantener el recinto a la temperatura configurada.'
+  },
+  compresion:{
+    kicker:'02 · IMPULSO',
+    label:'Compresión',
+    description:'El compresor mantiene el refrigerante en circulación y eleva su presión dentro del recorrido.'
+  },
+  condensacion:{
+    kicker:'03 · DISIPACIÓN',
+    label:'Condensación',
+    description:'El condensador libera al exterior el calor que el circuito ha recogido durante el proceso.'
+  },
+  control:{
+    kicker:'04 · LECTURA',
+    label:'Control',
+    description:'El sistema de control coordina el funcionamiento a partir de las lecturas disponibles en la instalación.'
+  }
+};
+const systemControls=[...document.querySelectorAll('.system-control')];
+const systemNodes=[...document.querySelectorAll('.cold-node[data-system-step]')];
+const systemDescription=document.getElementById('systemDescription');
+const systemKicker=document.getElementById('systemKicker');
+const systemLabel=document.getElementById('systemLabel');
+const coldSystemMedia=document.getElementById('coldSystemMedia');
+
+function selectSystemStep(step){
+  const data=systemData[step];
+  if(!data)return;
+  systemControls.forEach(control=>control.setAttribute('aria-selected',String(control.dataset.systemStep===step)));
+  systemNodes.forEach(node=>node.classList.toggle('is-active',node.dataset.systemStep===step));
+  coldSystemMedia.dataset.active=step;
+  systemDescription.classList.add('is-changing');
+  setTimeout(()=>{
+    systemDescription.textContent=data.description;
+    systemKicker.textContent=data.kicker;
+    systemLabel.textContent=data.label;
+    systemDescription.classList.remove('is-changing');
+  },140);
+}
+systemControls.forEach((control,index)=>{
+  control.addEventListener('click',()=>selectSystemStep(control.dataset.systemStep));
+  control.addEventListener('keydown',event=>{
+    if(!['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].includes(event.key))return;
+    event.preventDefault();
+    const direction=['ArrowRight','ArrowDown'].includes(event.key)?1:-1;
+    const next=systemControls[(index+direction+systemControls.length)%systemControls.length];
+    next.focus();
+    selectSystemStep(next.dataset.systemStep);
+  });
+});
+systemNodes.forEach(node=>node.addEventListener('click',()=>selectSystemStep(node.dataset.systemStep)));
+
+if(coldSystemMedia&&matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  coldSystemMedia.addEventListener('pointermove',event=>{
+    const rect=coldSystemMedia.getBoundingClientRect();
+    const x=((event.clientX-rect.left)/rect.width-.5)*-8;
+    const y=((event.clientY-rect.top)/rect.height-.5)*-8;
+    coldSystemMedia.style.setProperty('--tilt-x',x+'px');
+    coldSystemMedia.style.setProperty('--tilt-y',y+'px');
+  });
+  coldSystemMedia.addEventListener('pointerleave',()=>{
+    coldSystemMedia.style.setProperty('--tilt-x','0px');
+    coldSystemMedia.style.setProperty('--tilt-y','0px');
+  });
+}
+
+// Las especificaciones existentes reaccionan al foco y al toque.
+document.querySelectorAll('.alt .svc .svc-list li').forEach(item=>{
+  item.tabIndex=0;
+  const activate=()=>{
+    item.closest('.svc-list').querySelectorAll('li').forEach(sibling=>sibling.classList.remove('is-active'));
+    item.classList.add('is-active');
+  };
+  item.addEventListener('mouseenter',activate);
+  item.addEventListener('focus',activate);
+  item.addEventListener('click',activate);
+});
+
+// En móvil el párrafo SEO se muestra bajo demanda para conservar
+// una lectura compacta sin retirar contenido del documento.
+document.querySelectorAll('.detail-toggle').forEach(toggle=>{
+  toggle.addEventListener('click',()=>{
+    const detail=document.getElementById(toggle.getAttribute('aria-controls'));
+    const expanded=toggle.getAttribute('aria-expanded')==='true';
+    toggle.setAttribute('aria-expanded',String(!expanded));
+    toggle.textContent=expanded?'Ver detalle':'Ocultar detalle';
+    detail?.classList.toggle('is-expanded',!expanded);
+  });
+});
 
 const cio=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){
