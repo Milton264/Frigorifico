@@ -2401,6 +2401,58 @@ header{transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
   background:#1aa8d7;
   box-shadow:0 0 0 4px rgba(26,168,215,.11);
 }
+.mini-sticker{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:184px;
+  min-height:82px;
+  padding:8px;
+  border:1px solid #cde8f1;
+  border-radius:18px;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 16px 38px rgba(10,82,112,.13);
+  animation:stickerFloat 5s ease-in-out infinite;
+}
+.mini-sticker-photo{
+  flex:0 0 66px;
+  align-self:stretch;
+  min-height:64px;
+  border-radius:12px;
+  background-position:center;
+  background-size:cover;
+}
+.mini-sticker-copy{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+.mini-sticker-copy strong{
+  color:#073f5d;
+  font-family:'Sora',sans-serif;
+  font-size:1rem;
+}
+.mini-sticker-copy small{
+  margin-top:5px;
+  color:#5b7888;
+  font-size:.65rem;
+  font-weight:700;
+}
+.mini-sticker-industrial .mini-sticker-photo{
+  background-image:url('25 marzo 106.JPG');
+}
+.mini-sticker-installation{
+  width:215px;
+  min-height:96px;
+}
+.mini-sticker-installation .mini-sticker-photo{
+  flex-basis:84px;
+  background-image:url('P1010021.JPG');
+}
+@keyframes stickerFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
 
 /* Las tarjetas pares ya no bajan 28px: todos los pasos parten de la misma línea. */
 .steps .step:nth-child(even),
@@ -2464,6 +2516,13 @@ footer li a:hover{color:#0b8fbd}
     justify-content:center;
     padding-block:0!important;
   }
+  #industrial .svc-body{position:relative}
+  #industrial .service-tags{padding-right:194px}
+  #industrial .mini-sticker-industrial{
+    position:absolute;
+    right:0;
+    bottom:0;
+  }
   #industrial .svc-media,
   #comercial .svc-media{
     align-self:stretch;
@@ -2486,6 +2545,14 @@ footer li a:hover{color:#0b8fbd}
   .carousel-sec + .alt .svc-body{
     align-self:center;
     padding-block:0!important;
+  }
+  .carousel-sec + .alt .svc:first-child .svc-body{
+    position:relative;
+  }
+  .carousel-sec + .alt .svc:first-child .mini-sticker-installation{
+    position:absolute;
+    right:0;
+    bottom:0;
   }
   .carousel-sec + .alt .svc-media{
     align-self:stretch;
@@ -2524,6 +2591,7 @@ footer li a:hover{color:#0b8fbd}
   #certificaciones + .alt .faq-item{padding:0 16px}
   .service-tags{margin-top:17px}
   .service-tags span{font-size:.68rem}
+  .mini-sticker{display:none}
   .foot-logo-real{width:210px;margin-bottom:14px}
   footer{padding-top:50px}
 }
@@ -2599,6 +2667,10 @@ footer li a:hover{color:#0b8fbd}
           <span>Alta eficiencia</span>
           <span>SAT propio</span>
         </div>
+        <div class="mini-sticker mini-sticker-industrial" aria-hidden="true">
+          <span class="mini-sticker-photo"></span>
+          <span class="mini-sticker-copy"><strong>24 h</strong><small>Respuesta SAT</small></span>
+        </div>
       </div>
       <div class="svc-media reveal d2">
         <img src="foto frio industrial.jpg" alt="Instalación de frío industrial con compresores y evaporadores" loading="lazy" decoding="async">
@@ -2640,6 +2712,10 @@ footer li a:hover{color:#0b8fbd}
           <li>Equipos de compresión y evaporación de alta eficiencia</li>
         </ul>
         <p>Aseguramos una instalación rápida, fiable y conforme a la normativa vigente.</p>
+        <div class="mini-sticker mini-sticker-installation" aria-hidden="true">
+          <span class="mini-sticker-photo"></span>
+          <span class="mini-sticker-copy"><strong>A medida</strong><small>Montaje eficiente</small></span>
+        </div>
       </div>
     </div>
     <div class="svc rev reveal">
