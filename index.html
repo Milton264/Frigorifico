@@ -2369,9 +2369,163 @@ header{transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
   }
 }
 
+/* =========================================================
+   V8 · APROVECHAMIENTO DEL ESPACIO Y ALINEACIÓN
+   ========================================================= */
+.service-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:22px;
+}
+.service-tags span{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:7px 13px;
+  border:1px solid #cce8f2;
+  border-radius:999px;
+  color:#0b5879;
+  background:#eefaff;
+  font-family:'Sora',sans-serif;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+.service-tags span::before{
+  content:"";
+  width:6px;
+  height:6px;
+  margin-right:8px;
+  border-radius:50%;
+  background:#1aa8d7;
+  box-shadow:0 0 0 4px rgba(26,168,215,.11);
+}
+
+/* Las tarjetas pares ya no bajan 28px: todos los pasos parten de la misma línea. */
+.steps .step:nth-child(even),
+.steps .step:nth-child(even):hover{
+  transform:none!important;
+}
+.steps .step{align-self:stretch}
+
+/* Footer claro para usar el logotipo original sin inventarlo ni encerrarlo en un bloque. */
+footer{
+  position:relative;
+  color:var(--tinta);
+  background:
+    radial-gradient(circle at 88% 18%,rgba(126,214,239,.13),transparent 25rem),
+    #fff;
+  border-top:8px solid #0e6388;
+}
+footer::before{
+  content:"";
+  position:absolute;
+  top:-8px;
+  left:0;
+  width:34%;
+  height:8px;
+  background:#69d2ed;
+}
+.foot-logo-real{
+  display:block;
+  width:235px;
+  height:auto;
+  margin:0 0 18px;
+  padding:0;
+  background:#fff;
+}
+footer p,
+footer li,
+footer li a{color:#536b7c}
+footer h4{color:#073550}
+footer li a:hover{color:#0b8fbd}
+.foot-bottom{
+  border-top-color:#d4e8f0;
+  color:#6c8291;
+}
+
+@media(min-width:901px){
+  #industrial .wrap,
+  #comercial .wrap{
+    padding-top:58px;
+    padding-bottom:58px;
+  }
+  #industrial .svc,
+  #comercial .svc{
+    align-items:stretch;
+    gap:46px;
+    margin-bottom:0;
+  }
+  #industrial .svc-body,
+  #comercial .svc-body{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-block:0!important;
+  }
+  #industrial .svc-media,
+  #comercial .svc-media{
+    align-self:stretch;
+    height:auto;
+    min-height:570px;
+  }
+  #industrial .svc-media img,
+  #comercial .svc-media img{
+    height:100%!important;
+    min-height:570px;
+    aspect-ratio:auto;
+    object-fit:cover;
+  }
+
+  /* Las fotos de los tres servicios llenan la altura real de cada tarjeta. */
+  .carousel-sec + .alt .svc{
+    align-items:stretch;
+    padding:28px;
+  }
+  .carousel-sec + .alt .svc-body{
+    align-self:center;
+    padding-block:0!important;
+  }
+  .carousel-sec + .alt .svc-media{
+    align-self:stretch;
+    height:auto;
+    min-height:430px;
+  }
+  .carousel-sec + .alt .svc-media img{
+    height:100%!important;
+    min-height:430px;
+    aspect-ratio:auto;
+    object-fit:cover;
+  }
+
+  /* Ocho imágenes, doce celdas ocupadas y ningún hueco al final. */
+  #comercial + .alt .gallery{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-auto-rows:190px;
+    grid-auto-flow:dense;
+    gap:12px;
+  }
+  #comercial + .alt .gallery a{
+    grid-column:auto!important;
+    grid-row:auto!important;
+  }
+  #comercial + .alt .gallery a:nth-child(1){
+    grid-column:span 2!important;
+    grid-row:span 2!important;
+  }
+  #comercial + .alt .gallery a:nth-child(4){
+    grid-column:span 2!important;
+  }
+}
+
 @media(max-width:900px){
   #certificaciones + .alt .faq-item{padding:0 16px}
-  .foot-brand-logo{width:235px;margin-bottom:18px}
+  .service-tags{margin-top:17px}
+  .service-tags span{font-size:.68rem}
+  .foot-logo-real{width:210px;margin-bottom:14px}
+  footer{padding-top:50px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -2440,6 +2594,11 @@ header{transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
         <h3 class="reveal">Instalación y Mantenimiento para Naves y Procesos Productivos</h3>
         <p class="reveal">Realizamos la instalación de frío industrial y el mantenimiento de plantas enfriadoras, hornos de secado, sistemas de climatización por enfriamiento adiabático y todo tipo de equipos de refrigeración industrial. Cada instalación se dimensiona a medida para garantizar el rendimiento y la eficiencia del proceso productivo.</p>
         <p class="reveal">Sabemos que una avería puede detener la producción y generar graves pérdidas económicas. Por eso ofrecemos un servicio de reparación de frío industrial y SAT propio, con intervención técnica en menos de 24 horas.</p>
+        <div class="service-tags reveal" aria-label="Características del servicio">
+          <span>Diseño a medida</span>
+          <span>Alta eficiencia</span>
+          <span>SAT propio</span>
+        </div>
       </div>
       <div class="svc-media reveal d2">
         <img src="foto frio industrial.jpg" alt="Instalación de frío industrial con compresores y evaporadores" loading="lazy" decoding="async">
@@ -2561,6 +2720,11 @@ header{transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
         <p class="sec-lead reveal d2">Como empresa de refrigeración comercial, realizamos la instalación, reparación y mantenimiento de equipos de refrigeración comercial para comercios, supermercados e hipermercados.</p>
         <p class="reveal">Desde pequeñas tiendas hasta grandes hipermercados, garantizamos el mejor rendimiento y fiabilidad en tus equipos de frío. Contamos con un servicio técnico propio, respaldado por los principales fabricantes del sector, lo que nos permite ofrecer recambios originales y de primera calidad.</p>
         <p class="reveal">Nuestros clientes incluyen cadenas de supermercados, empresas de alimentación, franquicias y pequeños comercios que confían en nosotros por nuestra experiencia, rapidez y compromiso.</p>
+        <div class="service-tags reveal" aria-label="Sectores atendidos">
+          <span>Supermercados</span>
+          <span>Hipermercados</span>
+          <span>Comercios</span>
+        </div>
       </div>
     </div>
   </div>
@@ -2643,22 +2807,7 @@ header{transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
 <footer>
   <div class="foot-grid">
     <div>
-      <div class="foot-brand-logo" role="img" aria-label="Termoelectra">
-        <svg viewBox="0 0 430 86" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="footerBrandGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ef2835"/>
-              <stop offset=".55" stop-color="#b94f79"/>
-              <stop offset="1" stop-color="#6d88c4"/>
-            </linearGradient>
-          </defs>
-          <path d="M66 17a29 29 0 1 0 0 52" fill="none" stroke="url(#footerBrandGradient)" stroke-width="12" stroke-linecap="butt"/>
-          <rect x="72" y="14" width="17" height="6" rx="2" fill="#ef2835" transform="rotate(18 72 14)"/>
-          <rect x="76" y="24" width="15" height="6" rx="2" fill="#ef2835" transform="rotate(18 76 24)"/>
-          <rect x="76" y="58" width="15" height="6" rx="2" fill="#7b8bc2" transform="rotate(-18 76 58)"/>
-          <text x="102" y="58" fill="#fff" font-family="Sora,Arial,sans-serif" font-size="32" font-weight="800" letter-spacing="-1.4">TERMOELECTRA</text>
-        </svg>
-      </div>
+      <img class="foot-logo-real" src="Logo_TERMOELECTRA.jpg" alt="Termoelectra" loading="lazy" decoding="async">
       <p>Somos especialistas en refrigeración, frío industrial y climatización. Instalación, reparación y mantenimiento con servicio técnico propio.</p>
     </div>
     <div>
