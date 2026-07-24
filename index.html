@@ -3388,6 +3388,238 @@ header.is-scrolled{
   .orbit-ring::after{animation:none!important}
 }
 </style>
+<style>
+/* =========================================================
+   V12 · VISOR FOTOGRÁFICO INTERACTIVO
+   Sustituye el mapa abstracto por fotografías reales y textos
+   derivados únicamente del contenido facilitado.
+   ========================================================= */
+.service-showcase{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1.18fr) minmax(330px,.82fr);
+  min-height:470px;
+  margin-top:52px;
+  overflow:hidden;
+  border:1px solid #bcdce7;
+  border-radius:30px;
+  background:#052f47;
+  box-shadow:0 28px 72px rgba(3,52,73,.18);
+}
+.showcase-visual{
+  position:relative;
+  min-height:470px;
+  overflow:hidden;
+  background:#061f30;
+}
+.showcase-visual::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 56%,rgba(3,34,50,.42)),
+    linear-gradient(180deg,transparent 54%,rgba(2,24,36,.84));
+}
+.showcase-visual img{
+  width:100%;
+  height:100%;
+  min-height:470px;
+  object-fit:cover;
+  filter:saturate(.88) contrast(1.04);
+  transform:scale(1.035);
+  transition:opacity .28s ease,transform .65s ease,filter .28s ease;
+}
+.showcase-visual.is-switching img{
+  opacity:.22;
+  filter:saturate(.4) blur(3px);
+  transform:scale(1.07);
+}
+.showcase-scan{
+  position:absolute;
+  z-index:3;
+  top:0;
+  bottom:0;
+  left:-10%;
+  width:2px;
+  background:#a3ecff;
+  box-shadow:0 0 16px 5px rgba(119,222,247,.4);
+  animation:showcaseScan 5.4s ease-in-out infinite;
+  pointer-events:none;
+}
+.showcase-scan::after{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:52px;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(151,232,250,.13));
+}
+.showcase-corner{
+  position:absolute;
+  z-index:4;
+  width:54px;
+  height:54px;
+  pointer-events:none;
+}
+.showcase-corner.c1{
+  top:20px;
+  left:20px;
+  border-top:2px solid #9aeaff;
+  border-left:2px solid #9aeaff;
+}
+.showcase-corner.c2{
+  right:20px;
+  bottom:20px;
+  border-right:2px solid #9aeaff;
+  border-bottom:2px solid #9aeaff;
+}
+.showcase-caption{
+  position:absolute;
+  z-index:5;
+  left:30px;
+  bottom:28px;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  max-width:calc(100% - 60px);
+  color:#fff;
+}
+.showcase-caption small{
+  color:#9beaff;
+  font-family:'Sora',sans-serif;
+  font-size:.63rem;
+  font-weight:800;
+  letter-spacing:.15em;
+}
+.showcase-caption strong{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(1.35rem,2.3vw,2.2rem);
+  line-height:1.1;
+}
+.showcase-panel{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:40px 36px;
+  color:#fff;
+  background:
+    radial-gradient(circle at 100% 0,rgba(80,198,225,.17),transparent 17rem),
+    #052f47;
+}
+.showcase-panel::before{
+  content:"";
+  position:absolute;
+  top:28px;
+  right:28px;
+  width:58px;
+  height:3px;
+  border-radius:5px;
+  background:linear-gradient(90deg,#d62e3a,#7669a6,#70d9ef);
+}
+.showcase-panel>small{
+  margin-bottom:10px;
+  color:#9beaff;
+  font-family:'Sora',sans-serif;
+  font-size:.66rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.showcase-panel h3{
+  margin-bottom:14px;
+  color:#fff;
+  font-size:clamp(1.65rem,2.5vw,2.45rem);
+}
+.showcase-panel>p{
+  min-height:92px;
+  margin:0 0 24px;
+  color:rgba(237,250,255,.76);
+  line-height:1.72;
+  transition:opacity .2s ease,transform .2s ease;
+}
+.showcase-panel.is-switching>p,
+.showcase-panel.is-switching h3{
+  opacity:.2;
+  transform:translateY(5px);
+}
+.showcase-tabs{
+  display:grid;
+  gap:8px;
+}
+.showcase-tabs button{
+  display:grid;
+  grid-template-columns:38px 1fr;
+  align-items:center;
+  gap:11px;
+  width:100%;
+  min-height:53px;
+  padding:8px 13px 8px 9px;
+  border:1px solid rgba(173,228,241,.2);
+  border-radius:13px;
+  color:rgba(240,252,255,.78);
+  background:rgba(255,255,255,.055);
+  font-family:'Sora',sans-serif;
+  font-size:.75rem;
+  font-weight:700;
+  text-align:left;
+  cursor:pointer;
+  transition:transform .22s ease,border-color .22s ease,background .22s ease,color .22s ease;
+}
+.showcase-tabs button span{
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:35px;
+  border-radius:9px;
+  color:#8fe4f8;
+  background:rgba(111,215,239,.1);
+  font-size:.62rem;
+}
+.showcase-tabs button:hover,
+.showcase-tabs button:focus-visible{
+  border-color:rgba(159,234,251,.58);
+  color:#fff;
+  outline:none;
+  transform:translateX(4px);
+}
+.showcase-tabs button[aria-selected="true"]{
+  color:#073d57;
+  border-color:#9deaff;
+  background:#fff;
+}
+.showcase-tabs button[aria-selected="true"] span{
+  color:#073d57;
+  background:#dff7fd;
+}
+@keyframes showcaseScan{
+  0%,12%{left:-10%;opacity:0}
+  20%{opacity:1}
+  78%{opacity:1}
+  88%,100%{left:110%;opacity:0}
+}
+@media(max-width:900px){
+  .service-showcase{
+    grid-template-columns:1fr;
+    min-height:0;
+    margin-top:34px;
+    border-radius:22px;
+  }
+  .showcase-visual{min-height:280px}
+  .showcase-visual img{min-height:280px;aspect-ratio:16/10}
+  .showcase-panel{padding:28px 20px 24px}
+  .showcase-panel::before{top:21px;right:20px}
+  .showcase-panel>p{min-height:0;margin-bottom:20px;font-size:.9rem}
+  .showcase-tabs button{min-height:49px}
+  .showcase-caption{left:20px;bottom:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  .showcase-scan{animation:none!important;left:50%;opacity:.38}
+  .showcase-visual img{transform:none}
+}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -3429,9 +3661,9 @@ header.is-scrolled{
   <div class="snow" id="snow"></div>
   <div class="hero-inner">
     <h1 class="hero-title"><span class="w">Refrigeración</span> <span class="w hl">Industrial</span> <span class="w hl">y</span> <span class="w hl">Comercial</span></h1>
-    <p class="reveal d2">Instalación, reparación y mantenimiento de sistemas de refrigeración, frío industrial, aire acondicionado, calefacción y aerotermia. Servicio técnico propio con intervención en menos de 24 horas.</p>
+    <p class="reveal d2">Instalación, reparación y mantenimiento de Frío Industrial, Cámaras Frigoríficas y Refrigeración Comercial. SAT propio para Frío Industrial con intervención técnica en menos de 24 horas.</p>
     <div class="hero-btns reveal d3">
-      <a href="#contacto" class="btn btn-primary">Solicita presupuesto</a>
+      <a href="#contacto" class="btn btn-primary">Contactar</a>
       <a href="https://wa.me/34651097393" class="btn btn-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Enviar WhatsApp</a>
       <a href="tel:651097393" class="btn btn-ghost">651 09 73 93</a>
     </div>
@@ -3442,18 +3674,18 @@ header.is-scrolled{
 <div class="stats" id="stats">
   <div class="stats-overlay"></div>
   <div class="stats-inner">
-    <div class="stat reveal"><span class="num" data-count="24"></span><span class="lbl">Horas máx. respuesta SAT</span></div>
-    <div class="stat reveal d1"><span class="num" data-count="20"><span class="u">+</span></span><span class="lbl">Años de experiencia</span></div>
-    <div class="stat reveal d2"><span class="num" data-count="100"><span class="u">%</span></span><span class="lbl">Técnicos certificados</span></div>
-    <div class="stat reveal d3"><span class="num" data-count="500"><span class="u">+</span></span><span class="lbl">Instalaciones realizadas</span></div>
+    <div class="stat reveal"><span class="num" data-count="24"></span><span class="lbl">Horas · SAT de Frío Industrial</span></div>
+    <div class="stat reveal d1"><span class="num">RITE</span><span class="lbl">Instalaciones térmicas</span></div>
+    <div class="stat reveal d2"><span class="num">REIF</span><span class="lbl">Frío Industrial · Nivel 1</span></div>
+    <div class="stat reveal d3"><span class="num">RASIC</span><span class="lbl">Registro Nº 00500538</span></div>
   </div>
 </div>
 
 <!-- CINTA DE SECTORES -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Supermercados</span><i>❄</i><span>Hostelería</span><i>❄</i><span>Industria alimentaria</span><i>❄</i><span>Laboratorios</span><i>❄</i><span>Cadenas de frío</span><i>❄</i><span>Logística</span><i>❄</i><span>Farmacéutica</span><i>❄</i>
-    <span>Supermercados</span><i>❄</i><span>Hostelería</span><i>❄</i><span>Industria alimentaria</span><i>❄</i><span>Laboratorios</span><i>❄</i><span>Cadenas de frío</span><i>❄</i><span>Logística</span><i>❄</i><span>Farmacéutica</span><i>❄</i>
+    <span>Supermercados</span><i>❄</i><span>Hostelería</span><i>❄</i><span>Industria alimentaria</span><i>❄</i><span>Laboratorios</span><i>❄</i><span>Cadenas de frío</span><i>❄</i><span>Logística</span><i>❄</i>
+    <span>Supermercados</span><i>❄</i><span>Hostelería</span><i>❄</i><span>Industria alimentaria</span><i>❄</i><span>Laboratorios</span><i>❄</i><span>Cadenas de frío</span><i>❄</i><span>Logística</span><i>❄</i>
   </div>
 </div>
 
@@ -3463,14 +3695,14 @@ header.is-scrolled{
       <div class="svc-body">
         <span class="eyebrow-sec reveal">Frío Industrial</span>
         <h2 class="sec-title reveal d1">Empresa de Frío Industrial</h2>
-        <p class="sec-lead reveal d2">En Termoelectra somos una empresa de frío industrial especializada en la instalación, reparación y mantenimiento de sistemas de refrigeración industrial para naves, almacenes y procesos de producción que exigen un control térmico preciso.</p>
+        <p class="sec-lead reveal d2">En Termoelectra somos especialistas en la instalación y mantenimiento de sistemas de refrigeración industrial para naves y procesos de producción que requieren un control térmico preciso.</p>
         <h3 class="reveal">Instalación y Mantenimiento para Naves y Procesos Productivos</h3>
-        <p class="reveal">Realizamos la instalación de frío industrial y el mantenimiento de plantas enfriadoras, hornos de secado, sistemas de climatización por enfriamiento adiabático y todo tipo de equipos de refrigeración industrial. Cada instalación se dimensiona a medida para garantizar el rendimiento y la eficiencia del proceso productivo.</p>
-        <p class="reveal">Sabemos que una avería puede detener la producción y generar graves pérdidas económicas. Por eso ofrecemos un servicio de reparación de frío industrial y SAT propio, con intervención técnica en menos de 24 horas.</p>
-        <p class="seo-detail reveal"><strong>Servicio integral de refrigeración industrial:</strong> como empresa de frío industrial, centralizamos el estudio, la instalación, el mantenimiento y la reparación de cada sistema. Nuestro SAT de frío industrial revisa compresores, evaporadores, condensadores, circuitos, controles y elementos eléctricos para recuperar la instalación y prevenir nuevas paradas.</p>
+        <p class="reveal">Realizamos reparación y mantenimiento de plantas enfriadoras, hornos de secado, sistemas de climatización por enfriamiento adiabático y todo tipo de equipos de refrigeración industrial.</p>
+        <p class="reveal">Sabemos que una avería puede detener la producción y generar graves pérdidas económicas. Por eso, en Termoelectra garantizamos una intervención técnica en menos de 24 horas gracias a nuestro SAT propio.</p>
+        <p class="seo-detail reveal"><strong>Servicios de Refrigeración Industrial:</strong> como empresa de Frío Industrial, Termoelectra presenta servicios de instalación, mantenimiento, reparación y SAT de Frío Industrial adaptados a las necesidades de cada cliente.</p>
         <div class="service-tags reveal" aria-label="Características del servicio">
-          <span>Diseño a medida</span>
-          <span>Alta eficiencia</span>
+          <span>Solución adaptada</span>
+          <span>Refrigeración Industrial</span>
           <span>SAT propio</span>
         </div>
       </div>
@@ -3529,15 +3761,15 @@ header.is-scrolled{
       </div>
       <div class="svc-body">
         <h2 class="service-seo-title">Instalación de Cámaras Frigoríficas</h2>
-        <p>Como instaladores de cámaras frigoríficas con experiencia, diseñamos y montamos cámaras frigoríficas industriales y cámaras frigoríficas comerciales adaptadas a cada empresa. Nuestro servicio de montaje incluye:</p>
+        <p>En Termoelectra somos especialistas en el diseño, instalación y mantenimiento de Cámaras Frigoríficas industriales y comerciales. Nuestro servicio de montaje incluye:</p>
         <ul class="svc-list">
           <li>Cámaras de refrigeración y congelación de todos los tamaños</li>
           <li>Sistemas de control de temperatura y humedad</li>
           <li>Paneles frigoríficos y puertas isotérmicas</li>
           <li>Equipos de compresión y evaporación de alta eficiencia</li>
         </ul>
-        <p>Aseguramos una instalación rápida, fiable y conforme a la normativa vigente.</p>
-        <p class="seo-detail" id="detail-install"><strong>Proyecto completo:</strong> como empresa de cámaras frigoríficas, estudiamos el espacio, el producto, la temperatura de conservación y el ritmo de trabajo antes de iniciar el montaje de cámaras frigoríficas. Tanto si necesitas instalar una cámara frigorífica nueva como ampliar una existente, nuestros instaladores de cámaras frigoríficas coordinan paneles, puertas, evaporación, compresión, control y puesta en marcha.</p>
+        <p>Aseguramos una instalación rápida, fiable y conforme a las normativas vigentes.</p>
+        <p class="seo-detail" id="detail-install"><strong>Instalación y Montaje:</strong> la instalación de Cámaras Frigoríficas reúne cámaras de refrigeración y congelación, sistemas de control de temperatura y humedad, paneles frigoríficos, puertas isotérmicas y equipos de compresión y evaporación de alta eficiencia.</p>
         <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-install">Ver detalle</button>
       </div>
     </div>
@@ -3546,19 +3778,20 @@ header.is-scrolled{
         <img src="foto SAT.jpg" alt="Servicio técnico y reparación de cámara frigorífica" loading="lazy" decoding="async">
         <span class="media-index" aria-hidden="true">02</span>
         <span class="media-scan" aria-hidden="true"></span>
-        <span class="tag">SAT · urgencias 24h</span>
+        <span class="tag">Servicio técnico propio</span>
       </div>
       <div class="svc-body">
         <h2 class="service-seo-title">Reparación de Cámaras Frigoríficas</h2>
-        <p>Nuestro servicio técnico de cámaras frigoríficas repara instalaciones industriales y comerciales con rapidez. Atendemos averías urgentes y los problemas más comunes:</p>
+        <p>Nuestro servicio técnico de Cámaras Frigoríficas atiende averías urgentes y problemas comunes como:</p>
         <ul class="svc-list">
           <li>Fugas de gas refrigerante</li>
           <li>Fallos de compresores o evaporadores</li>
-          <li>Problemas de temperatura y estanqueidad</li>
+          <li>Problemas de temperatura</li>
+          <li>Humedades o pérdidas de estanqueidad</li>
           <li>Fallos eléctricos o electrónicos</li>
         </ul>
-        <p>Disponemos de técnicos certificados y repuestos rápidos para minimizar los tiempos de inactividad, con servicio de urgencias para cámaras frigoríficas y cuartos fríos.</p>
-        <p class="seo-detail" id="detail-repair"><strong>Diagnóstico y reparación:</strong> cada reparación de cámara frigorífica empieza con una revisión de temperatura, presiones, refrigerante, compresores, evaporadores y cuadro eléctrico. Si necesitas reparar una cámara frigorífica o atender una avería, nuestro SAT de cámara frigorífica también cubre la reparación de cuartos fríos y de equipos frigoríficos industriales, incluyendo urgencias cuando existe riesgo para el producto o la continuidad del negocio.</p>
+        <p>Disponemos de técnicos certificados y repuestos rápidos para minimizar los tiempos de inactividad.</p>
+        <p class="seo-detail" id="detail-repair"><strong>Reparación de Cámaras Frigoríficas:</strong> el servicio técnico atiende averías de Cámaras Frigoríficas, fugas de gas refrigerante, fallos de compresores o evaporadores, problemas de temperatura, estanqueidad y componentes eléctricos o electrónicos.</p>
         <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-repair">Ver detalle</button>
       </div>
     </div>
@@ -3567,20 +3800,21 @@ header.is-scrolled{
         <img src="Mantenimiento.jpg" alt="Mantenimiento preventivo de cámaras de refrigeración" loading="lazy" decoding="async">
         <span class="media-index" aria-hidden="true">03</span>
         <span class="media-scan" aria-hidden="true"></span>
-        <span class="tag">Contratos de mantenimiento</span>
+        <span class="tag">Mantenimiento preventivo y correctivo</span>
       </div>
       <div class="svc-body">
         <h2 class="service-seo-title">Mantenimiento de Cámaras Frigoríficas</h2>
-        <p>El mantenimiento de cámaras frigoríficas es clave para prolongar la vida útil de tus equipos y evitar averías costosas. Ofrecemos contratos de mantenimiento preventivo y correctivo:</p>
+        <p>El mantenimiento de cámaras frigoríficas es clave para prolongar la vida útil de tus equipos y evitar averías costosas. Realizamos mantenimiento preventivo y correctivo:</p>
         <ul class="svc-list">
           <li>Limpieza de evaporadores y condensadores</li>
           <li>Revisión de niveles de refrigerante</li>
           <li>Control de presiones y temperatura</li>
           <li>Verificación de la estanqueidad del sistema</li>
-          <li>Ajuste de componentes eléctricos y electrónicos</li>
+          <li>Ajuste de componentes eléctricos y mecánicos</li>
+          <li>Revisión de puertas, bisagras y aislamiento</li>
         </ul>
-        <p>Te ayudamos a cumplir la normativa, reducir el consumo energético y garantizar la seguridad alimentaria de tus productos.</p>
-        <p class="seo-detail" id="detail-maintenance"><strong>Mantenimiento adaptado:</strong> ofrecemos contrato de mantenimiento de cámaras frigoríficas para instalaciones industriales y comerciales. Como empresa de mantenimiento de cámaras, combinamos mantenimiento de frío industrial, mantenimiento de refrigeración comercial y seguimiento preventivo para detectar suciedad, desgaste, fugas o desviaciones antes de que provoquen una parada.</p>
+        <p>Un buen mantenimiento garantiza eficiencia energética, ahorro y seguridad alimentaria.</p>
+        <p class="seo-detail" id="detail-maintenance"><strong>Mantenimiento de Cámaras Frigoríficas:</strong> realizamos mantenimiento preventivo y correctivo de Cámaras de Refrigeración para prolongar su vida útil y evitar averías costosas.</p>
         <button class="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-maintenance">Ver detalle</button>
       </div>
     </div>
@@ -3590,25 +3824,25 @@ header.is-scrolled{
 <!-- PROCESO -->
 <section class="process-sec">
   <div class="wrap">
-    <span class="eyebrow-sec reveal">Cómo trabajamos</span>
-    <h2 class="sec-title reveal d1">Un Proceso Claro, de Principio a Fin</h2>
-    <p class="sec-lead reveal d2">Desde la primera visita hasta el mantenimiento continuo, acompañamos cada proyecto con un método probado que garantiza resultados fiables.</p>
+    <span class="eyebrow-sec reveal">Servicios de Refrigeración</span>
+    <h2 class="sec-title reveal d1">Instalación, Reparación, Mantenimiento y SAT</h2>
+    <p class="sec-lead reveal d2">Las principales áreas de servicio descritas por Termoelectra para Frío Industrial, Cámaras Frigoríficas y Refrigeración Comercial.</p>
     <div class="steps">
       <article class="step reveal open">
-        <button class="step-toggle" type="button" aria-expanded="true"><span class="step-num">01</span><span class="step-title">Diagnóstico</span><span class="step-plus" aria-hidden="true">+</span></button>
-        <div class="step-detail"><p>Visitamos tu instalación, analizamos necesidades y dimensionamos la solución técnica más eficiente.</p></div>
+        <button class="step-toggle" type="button" aria-expanded="true"><span class="step-num">01</span><span class="step-title">Instalación</span><span class="step-plus" aria-hidden="true">+</span></button>
+        <div class="step-detail"><p>Instalación de sistemas de Frío Industrial y Cámaras Frigoríficas adaptados a las necesidades de cada cliente.</p></div>
       </article>
       <article class="step reveal d1">
-        <button class="step-toggle" type="button" aria-expanded="false"><span class="step-num">02</span><span class="step-title">Propuesta</span><span class="step-plus" aria-hidden="true">+</span></button>
-        <div class="step-detail"><p>Elaboramos un presupuesto claro y sin compromiso, con los equipos y plazos adaptados a tu proyecto.</p></div>
+        <button class="step-toggle" type="button" aria-expanded="false"><span class="step-num">02</span><span class="step-title">Reparación</span><span class="step-plus" aria-hidden="true">+</span></button>
+        <div class="step-detail"><p>Reparación de equipos de Refrigeración Industrial y atención de averías en Cámaras Frigoríficas.</p></div>
       </article>
       <article class="step reveal d2">
-        <button class="step-toggle" type="button" aria-expanded="false"><span class="step-num">03</span><span class="step-title">Instalación</span><span class="step-plus" aria-hidden="true">+</span></button>
-        <div class="step-detail"><p>Nuestro equipo ejecuta el montaje con equipos de alta eficiencia y conforme a la normativa vigente.</p></div>
+        <button class="step-toggle" type="button" aria-expanded="false"><span class="step-num">03</span><span class="step-title">Mantenimiento</span><span class="step-plus" aria-hidden="true">+</span></button>
+        <div class="step-detail"><p>Mantenimiento preventivo y correctivo de Cámaras de Refrigeración y equipos de Frío Industrial.</p></div>
       </article>
       <article class="step reveal d3">
-        <button class="step-toggle" type="button" aria-expanded="false"><span class="step-num">04</span><span class="step-title">Mantenimiento</span><span class="step-plus" aria-hidden="true">+</span></button>
-        <div class="step-detail"><p>Ofrecemos contratos de mantenimiento y SAT propio con intervención en menos de 24 horas.</p></div>
+        <button class="step-toggle" type="button" aria-expanded="false"><span class="step-num">04</span><span class="step-title">SAT Propio</span><span class="step-plus" aria-hidden="true">+</span></button>
+        <div class="step-detail"><p>Servicio SAT propio para Frío Industrial con intervención técnica en menos de 24 horas.</p></div>
       </article>
     </div>
   </div>
@@ -3627,7 +3861,7 @@ header.is-scrolled{
         <p class="sec-lead reveal d2">Como empresa de refrigeración comercial, realizamos la instalación, reparación y mantenimiento de equipos de refrigeración comercial para comercios, supermercados e hipermercados.</p>
         <p class="reveal">Desde pequeñas tiendas hasta grandes hipermercados, garantizamos el mejor rendimiento y fiabilidad en tus equipos de frío. Contamos con un servicio técnico propio, respaldado por los principales fabricantes del sector, lo que nos permite ofrecer recambios originales y de primera calidad.</p>
         <p class="reveal">Nuestros clientes incluyen cadenas de supermercados, empresas de alimentación, franquicias y pequeños comercios que confían en nosotros por nuestra experiencia, rapidez y compromiso.</p>
-        <p class="seo-detail reveal"><strong>Instalación, mantenimiento y reparación:</strong> trabajamos con equipos de refrigeración comercial para exposición, conservación y almacenamiento. Nuestro servicio incluye instalación de refrigeración comercial, mantenimiento de refrigeración comercial, reparación de refrigeración comercial y servicio técnico de refrigeración para vitrinas, cámaras, evaporadores, condensadores y centrales de frío.</p>
+        <p class="seo-detail reveal"><strong>Servicios de Refrigeración Comercial:</strong> instalación, reparación y mantenimiento de equipos de Refrigeración Comercial para comercios, supermercados e hipermercados, con servicio técnico propio y recambios originales.</p>
         <div class="service-tags reveal" aria-label="Sectores atendidos">
           <span>Supermercados</span>
           <span>Hipermercados</span>
@@ -3642,7 +3876,7 @@ header.is-scrolled{
   <div class="wrap">
     <span class="eyebrow-sec reveal">Nuestros trabajos</span>
     <h2 class="sec-title reveal d1">Instalaciones Reales de Refrigeración y Frío Industrial</h2>
-    <p class="sec-lead reveal d2">Una muestra de proyectos ejecutados por nuestro equipo técnico. Haz clic en cualquier imagen para ampliarla.</p>
+    <p class="sec-lead reveal d2">Una selección visual de instalaciones y equipos de Refrigeración y Frío Industrial. Haz clic en cualquier imagen para ampliarla.</p>
     <div class="gallery reveal">
       <a class="g-big" data-lb="P1010063i.JPG"><img src="P1010063i.JPG" alt="Instalación frigorífica industrial en cubierta" loading="lazy" decoding="async"></a>
       <a data-lb="25 marzo 106.JPG"><img src="25 marzo 106.JPG" alt="Sala de máquinas de frío industrial" loading="lazy" decoding="async"></a>
@@ -3666,28 +3900,25 @@ header.is-scrolled{
       <div class="cert"><div class="cn">REIF</div><p>Empresa instaladora y mantenedora de frío industrial (Nivel 1).</p></div>
       <div class="cert"><div class="cn">IGII-B</div><p>Empresa instaladora de gas en instalaciones comunes en edificios.</p></div>
       <div class="cert"><div class="cn">Gases fluorados</div><p>Manipulación de gases fluorados — todas las cargas.</p></div>
-      <div class="cert"><div class="cn">RASIC</div><p>Nº 00500538. Registro de empresas de servicios.</p></div>
+      <div class="cert"><div class="cn">RASIC</div><p>Nº 00500538.</p></div>
     </div>
-    <article class="service-orbit reveal" aria-label="Mapa de las áreas de refrigeración de Termoelectra">
-      <div class="orbit-copy">
-        <small>Mapa de servicios</small>
-        <h3>Frío Industrial, Cámaras Frigoríficas y Refrigeración Comercial</h3>
-        <p>La instalación, la reparación y el mantenimiento conectan las áreas que ya se presentan en esta página: Frío Industrial, Cámaras Frigoríficas y Refrigeración Comercial.</p>
-        <span class="orbit-hint">Selecciona un punto para volver a cada área</span>
+    <article class="service-showcase reveal" aria-label="Explorador visual de los servicios de refrigeración">
+      <div class="showcase-visual" id="showcaseVisual">
+        <img id="showcaseImage" src="foto frio industrial.jpg" alt="Instalación de Frío Industrial" loading="lazy" decoding="async">
+        <span class="showcase-scan" aria-hidden="true"></span>
+        <span class="showcase-corner c1" aria-hidden="true"></span>
+        <span class="showcase-corner c2" aria-hidden="true"></span>
+        <div class="showcase-caption"><small id="showcaseIndex">ÁREA 01</small><strong id="showcaseCaption">Frío Industrial</strong></div>
       </div>
-      <div class="orbit-stage">
-        <div class="orbit-ring" aria-hidden="true">
-          <div class="orbit-core">
-            <span>TERMOELECTRA</span>
-            <strong>Refrigeración</strong>
-            <i>Instalación · SAT · Mantenimiento</i>
-          </div>
+      <div class="showcase-panel">
+        <small>Explorador visual</small>
+        <h3 id="showcaseTitle">Refrigeración y Frío Industrial</h3>
+        <p id="showcaseText">Instalación y mantenimiento de sistemas de Refrigeración Industrial para naves y procesos productivos, además de reparación y SAT propio.</p>
+        <div class="showcase-tabs" role="tablist" aria-label="Seleccionar área de servicio">
+          <button type="button" role="tab" aria-selected="true" data-showcase="industrial"><span>01</span>Frío Industrial</button>
+          <button type="button" role="tab" aria-selected="false" data-showcase="camaras"><span>02</span>Cámaras Frigoríficas</button>
+          <button type="button" role="tab" aria-selected="false" data-showcase="comercial"><span>03</span>Refrigeración Comercial</button>
         </div>
-        <a class="orbit-node n1" data-index="01" href="#industrial">Frío Industrial</a>
-        <a class="orbit-node n2" data-index="02" href="#instalacion-camaras-frigorificas">Instalación</a>
-        <a class="orbit-node n3" data-index="03" href="#reparacion-camaras-frigorificas">Reparación</a>
-        <a class="orbit-node n4" data-index="04" href="#mantenimiento-camaras-frigorificas">Mantenimiento</a>
-        <a class="orbit-node n5" data-index="05" href="#comercial">Comercial</a>
       </div>
     </article>
   </div>
@@ -3698,12 +3929,12 @@ header.is-scrolled{
     <span class="eyebrow-sec reveal">Preguntas frecuentes</span>
     <h2 class="sec-title reveal d1">FAQ</h2>
     <div class="reveal d2">
-      <div class="faq-item"><button class="faq-q">¿Qué tipo de sistemas instaláis?</button><div class="faq-a"><p>Instalamos sistemas de refrigeración industrial y comercial, cámaras frigoríficas, aire acondicionado, calefacción y aerotermia. Trabajamos tanto en proyectos nuevos como en reformas y ampliaciones de instalaciones existentes.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Qué es la aerotermia y por qué es una buena opción?</button><div class="faq-a"><p>La aerotermia es una tecnología que extrae energía del aire para climatizar y producir agua caliente con un consumo eléctrico muy reducido. Es una opción eficiente, ecológica y con un importante ahorro energético a largo plazo.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Ayudáis con la eficiencia energética y el ahorro?</button><div class="faq-a"><p>Sí. Diseñamos cada instalación buscando el máximo rendimiento con el menor consumo, y ofrecemos mantenimiento preventivo que mantiene los equipos en condiciones óptimas, reduciendo el gasto energético y alargando su vida útil.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Qué servicios ofrecéis exactamente?</button><div class="faq-a"><p>Instalación, reparación y mantenimiento de frío industrial, cámaras frigoríficas, refrigeración comercial, climatización y aerotermia, con servicio técnico (SAT) propio disponible para averías urgentes.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Qué tipo de sistemas instaláis?</button><div class="faq-a"><p>La información disponible incluye sistemas de Refrigeración Industrial, Cámaras Frigoríficas y Refrigeración Comercial. Para cualquier otra necesidad de climatización, consulta directamente con Termoelectra.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Qué es la aerotermia y por qué es una buena opción?</button><div class="faq-a"><p>La aerotermia aprovecha energía del aire exterior para climatización y producción de agua caliente. Su conveniencia depende de las características y necesidades concretas de cada instalación.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Ayudáis con la eficiencia energética y el ahorro?</button><div class="faq-a"><p>El mantenimiento preventivo y correctivo ayuda a conservar el funcionamiento de los equipos. En Cámaras de Refrigeración, un buen mantenimiento favorece la eficiencia energética, el ahorro y la seguridad alimentaria.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Qué servicios ofrecéis exactamente?</button><div class="faq-a"><p>Instalación, reparación y mantenimiento de Frío Industrial, Cámaras Frigoríficas y Refrigeración Comercial, además de SAT propio para Frío Industrial.</p></div></div>
       <div class="faq-item"><button class="faq-q">¿En qué zonas trabajáis?</button><div class="faq-a"><p>Damos servicio en nuestra zona de actuación habitual. Contáctanos indicándonos tu ubicación y te confirmamos la disponibilidad y los plazos de intervención.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Qué ventajas tiene contratar instalación y mantenimiento con la misma empresa?</button><div class="faq-a"><p>Contar con un único interlocutor para instalación y mantenimiento garantiza un conocimiento total de tu instalación, respuestas más rápidas ante averías, mejor trazabilidad y condiciones ventajosas en los contratos de mantenimiento.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Qué ventajas tiene contratar instalación y mantenimiento con la misma empresa?</button><div class="faq-a"><p>Permite centralizar la información de la instalación y su mantenimiento con un mismo equipo. Las condiciones y el alcance concreto dependen del servicio contratado.</p></div></div>
     </div>
   </div>
 </section>
@@ -3714,12 +3945,12 @@ header.is-scrolled{
       <div class="contact-info">
         <span class="eyebrow-sec" style="color:var(--cian-cl)">Contacto</span>
         <h2>¿Necesitas un Servicio de Refrigeración?</h2>
-        <p>Solicita tu presupuesto sin compromiso. Rellena el formulario y te responderemos por WhatsApp, o contáctanos directamente.</p>
+        <p>Cuéntanos qué necesitas mediante el formulario o contacta directamente por teléfono, correo electrónico o WhatsApp.</p>
         <ul class="contact-list">
           <li><span>Teléfono</span><a href="tel:651097393">651 09 73 93</a></li>
           <li><span>Email</span><a href="mailto:info@termoelectra.es">info@termoelectra.es</a></li>
           <li><span>Horario</span>Lun. a Vie. de 8h a 18h</li>
-          <li><span>Respuesta SAT</span>En menos de 24 horas</li>
+          <li><span>SAT de Frío Industrial</span>Intervención en menos de 24 horas</li>
         </ul>
       </div>
       <div class="contact-form">
@@ -3948,6 +4179,76 @@ if(coldSystemMedia&&matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-
     coldSystemMedia.style.setProperty('--tilt-y','0px');
   });
 }
+
+// Visor final: alterna entre fotografías reales y textos basados
+// exclusivamente en las áreas descritas por Termoelectra.
+const showcaseData={
+  industrial:{
+    index:'ÁREA 01',
+    caption:'Frío Industrial',
+    title:'Refrigeración y Frío Industrial',
+    text:'Instalación y mantenimiento de sistemas de Refrigeración Industrial para naves y procesos productivos, además de reparación y SAT propio.',
+    image:'foto frio industrial.jpg',
+    alt:'Instalación de Frío Industrial'
+  },
+  camaras:{
+    index:'ÁREA 02',
+    caption:'Cámaras Frigoríficas',
+    title:'Cámaras de Refrigeración',
+    text:'Diseño, instalación y mantenimiento de Cámaras de Refrigeración industriales y comerciales, junto con servicio técnico para averías.',
+    image:'P1010037.JPG',
+    alt:'Instalación de una Cámara Frigorífica'
+  },
+  comercial:{
+    index:'ÁREA 03',
+    caption:'Refrigeración Comercial',
+    title:'Frío Comercial',
+    text:'Soluciones de Refrigeración Comercial para comercios, supermercados e hipermercados, con reparación, mantenimiento y servicio técnico propio.',
+    image:'frio comercial.jpeg',
+    alt:'Cámara de Refrigeración Comercial'
+  }
+};
+const showcaseVisual=document.getElementById('showcaseVisual');
+const showcasePanel=document.querySelector('.showcase-panel');
+const showcaseImage=document.getElementById('showcaseImage');
+const showcaseIndex=document.getElementById('showcaseIndex');
+const showcaseCaption=document.getElementById('showcaseCaption');
+const showcaseTitle=document.getElementById('showcaseTitle');
+const showcaseText=document.getElementById('showcaseText');
+const showcaseTabs=[...document.querySelectorAll('[data-showcase]')];
+
+Object.values(showcaseData).slice(1).forEach(item=>{
+  const preload=new Image();
+  preload.src=item.image;
+});
+function selectShowcase(key){
+  const item=showcaseData[key];
+  if(!item||showcaseVisual.classList.contains('is-switching'))return;
+  showcaseTabs.forEach(tab=>tab.setAttribute('aria-selected',String(tab.dataset.showcase===key)));
+  showcaseVisual.classList.add('is-switching');
+  showcasePanel.classList.add('is-switching');
+  setTimeout(()=>{
+    showcaseImage.src=item.image;
+    showcaseImage.alt=item.alt;
+    showcaseIndex.textContent=item.index;
+    showcaseCaption.textContent=item.caption;
+    showcaseTitle.textContent=item.title;
+    showcaseText.textContent=item.text;
+    showcaseVisual.classList.remove('is-switching');
+    showcasePanel.classList.remove('is-switching');
+  },220);
+}
+showcaseTabs.forEach((tab,index)=>{
+  tab.addEventListener('click',()=>selectShowcase(tab.dataset.showcase));
+  tab.addEventListener('keydown',event=>{
+    if(!['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].includes(event.key))return;
+    event.preventDefault();
+    const direction=['ArrowRight','ArrowDown'].includes(event.key)?1:-1;
+    const next=showcaseTabs[(index+direction+showcaseTabs.length)%showcaseTabs.length];
+    next.focus();
+    selectShowcase(next.dataset.showcase);
+  });
+});
 
 // Las especificaciones existentes reaccionan al foco y al toque.
 document.querySelectorAll('.alt .svc .svc-list li').forEach(item=>{
