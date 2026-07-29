@@ -3687,9 +3687,9 @@ header.is-scrolled{
   <nav class="nav">
     <img class="nav-logo" src="Logo_TERMOELECTRA.jpg" alt="Termoelectra Refrigeración" decoding="async" onerror="this.outerHTML='<span style=&quot;font-family:Sora,sans-serif;font-weight:800;font-size:1.3rem;color:var(--azul)&quot;>TERMOELECTRA</span>'">
     <div class="nav-links" id="navLinks">
-      <a href="/">Home</a>
-      <a href="/refrigeracion">Refrigeración</a>
-      <a href="/climatizacion">Climatización</a>
+      <a href="index.html">Home</a>
+      <a href="refrigeracion.html">Refrigeración</a>
+      <a href="climatizacion.html">Climatización</a>
       <a href="#contacto" class="nav-cta">Contacto</a>
     </div>
     <button class="burger" id="burger" aria-label="Menú" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
@@ -4073,8 +4073,8 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleM
 const pageHeader=document.querySelector('header');
 const scrollProgress=document.getElementById('scrollProgress');
 const heroEl=document.querySelector('.hero');
-const homeNav=navLinks.querySelector('a[href="/"]');
-const refrigerationNav=navLinks.querySelector('a[href="/refrigeracion"]');
+const homeNav=navLinks.querySelector('a[href="index.html"]');
+const refrigerationNav=navLinks.querySelector('a[href="refrigeracion.html"]');
 const contactNav=navLinks.querySelector('a[href="#contacto"]');
 const industrialSection=document.getElementById('industrial');
 const contactSection=document.getElementById('contacto');
