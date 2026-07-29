@@ -122,6 +122,12 @@
     .menu-toggle.active span{opacity:0}
     .menu-toggle.active::before{transform:translateY(7px) rotate(45deg)}
     .menu-toggle.active::after{transform:translateY(-7px) rotate(-45deg)}
+    .menu-overlay{
+      position:fixed;inset:0;z-index:998;opacity:0;pointer-events:none;
+      background:rgba(2,14,22,.64);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+      transition:opacity .3s ease;
+    }
+    .menu-overlay.on{opacity:1;pointer-events:auto}
 
     /* Hero */
     .hero{
@@ -411,15 +417,50 @@
     .reveal.delay{transition-delay:.12s}
 
     @media(max-width:1000px){
-      .nav-links{display:none}
-      .menu-toggle{display:grid}
-      .nav-links.open{
-        position:fixed;z-index:1002;display:flex;flex-direction:column;align-items:stretch;
-        top:98px;left:18px;right:18px;padding:18px;border:1px solid var(--line);border-radius:24px;
-        background:#fff;box-shadow:0 30px 70px rgba(4,39,58,.24);
+      .nav-links{
+        position:fixed;z-index:1002;inset:0 0 auto auto;
+        width:min(88vw,390px);height:100dvh;min-height:100vh;
+        padding:108px 28px 120px;overflow-y:auto;overscroll-behavior:contain;
+        display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:8px;
+        border-left:1px solid var(--line);border-radius:0;
+        background:radial-gradient(circle at 100% 0,rgba(32,168,210,.12),transparent 19rem),#fff;
+        box-shadow:-24px 0 70px rgba(4,24,40,.24);
+        transform:translate3d(105%,0,0);
+        transition:transform .42s cubic-bezier(.2,.75,.2,1);
+        isolation:isolate;
       }
-      .nav-links.open a{padding:16px 18px}
-      .nav-links.open a.active::after{display:none}
+      .nav-links::before{
+        content:"";position:absolute;left:28px;right:28px;top:82px;height:1px;
+        background:linear-gradient(90deg,var(--red),var(--cyan),transparent);
+      }
+      .nav-links.open{transform:translate3d(0,0,0)}
+      .nav-links a{
+        position:relative;width:100%;padding:18px;border-bottom:1px solid var(--line);
+        border-radius:0!important;background:transparent;color:var(--navy)!important;
+        font-size:1.05rem;
+      }
+      .nav-links a:not(.contact-link)::after{
+        content:"›";display:block;position:absolute;right:10px;top:50%;
+        width:auto;height:auto;background:none;color:var(--cyan);font-size:1.45rem;
+        transform:translateY(-50%);
+      }
+      .nav-links a.active{background:var(--ice-2)}
+      .nav-links a.active::after{background:none}
+      .nav-links .contact-link{
+        margin-top:18px;padding:17px 22px!important;border:0;border-radius:999px!important;
+        background:linear-gradient(135deg,var(--navy-2),var(--cyan));color:#fff!important;text-align:center;
+      }
+      .menu-toggle{
+        z-index:1004;display:flex;flex-direction:column;align-items:center;justify-content:center;
+        gap:0;
+      }
+      .menu-toggle.active{
+        position:fixed;top:25px;right:22px;width:48px;height:48px;
+        border:1px solid var(--line);border-radius:50%;background:#fff;
+        box-shadow:0 10px 30px rgba(4,24,40,.12);
+      }
+      body.menu-open .mobile-bar,
+      body.menu-open .wa-float{opacity:0;pointer-events:none}
       .hero-grid{grid-template-columns:1fr}
       .hero-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:18px}
       .hero-proof strong{grid-column:1/-1}
@@ -449,7 +490,7 @@
       .nav{min-height:68px;padding:8px 9px 8px 13px;border-radius:20px}
       .brand img{width:166px;height:48px}
       .menu-toggle{width:48px;height:48px}
-      .nav-links.open{top:86px;left:9px;right:9px}
+      .nav-links.open{transform:translate3d(0,0,0)}
       .hero{min-height:auto;padding:138px 0 46px}
       .hero-media::before{background:linear-gradient(0deg,rgba(3,39,58,.98),rgba(3,43,64,.6) 100%)}
       .hero h1{font-size:clamp(3rem,15vw,5rem);line-height:.9}
@@ -528,18 +569,19 @@
 
   <header class="site-header" id="siteHeader">
     <nav class="nav" aria-label="Navegación principal">
-      <a class="brand" href="/" aria-label="Termoelectra, inicio">
+      <a class="brand" href="index.html" aria-label="Termoelectra, inicio">
         <img src="climatizacion-assets/logo-termoelectra.webp" width="420" height="157" alt="Termoelectra">
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="/">Home</a>
-        <a href="/refrigeracion">Refrigeración</a>
-        <a class="active" href="/climatizacion" aria-current="page">Climatización</a>
+        <a href="index.html">Home</a>
+        <a href="refrigeracion.html">Refrigeración</a>
+        <a class="active" href="climatizacion.html" aria-current="page">Climatización</a>
         <a class="contact-link" href="#contacto">Contacto</a>
       </div>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><span></span></button>
     </nav>
   </header>
+  <div class="menu-overlay" id="menuOverlay"></div>
 
   <main id="contenido">
     <section class="hero" aria-labelledby="hero-title">
@@ -586,7 +628,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Climatización Termoelectra</span>
           <h2>Tres formas de trabajar el confort térmico.</h2>
-          <p class="lead">La página reúne las soluciones de climatización que ya ofrece Termoelectra: aire acondicionado, calefacción y aerotermia.</p>
+          <p class="lead">Instalación, reparación y mantenimiento de aire acondicionado, calefacción y aerotermia.</p>
         </div>
         <div class="service-grid">
           <article class="service-card reveal">
@@ -612,8 +654,8 @@
       <div class="shell">
         <div class="section-head center reveal">
           <span class="eyebrow">Explorador visual</span>
-          <h2 id="explorer-title">Mira cada solución sin salir de la página.</h2>
-          <p class="lead">Las tres fotografías conservan exactamente el mismo marco. Cambia de área para ver la imagen y la información correspondiente.</p>
+          <h2 id="explorer-title">Encuentra la solución de climatización que necesitas.</h2>
+          <p class="lead">Selecciona un área para conocer los servicios de Aire Acondicionado, Calefacción y Aerotermia.</p>
         </div>
         <div class="explorer reveal" id="serviceExplorer">
           <div class="explorer-media" aria-live="polite">
@@ -641,7 +683,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Servicio de Climatización</span>
           <h2>Instalación, reparación y mantenimiento.</h2>
-          <p class="lead">Termoelectra trabaja la climatización mediante aire acondicionado, calefacción y aerotermia. Cada bloque presenta únicamente los servicios ya incluidos en la información de la empresa.</p>
+          <p class="lead">Revisa las principales áreas de climatización y los servicios disponibles para cada sistema.</p>
         </div>
         <div class="detail-stack">
           <article class="detail-card reveal" id="aire-acondicionado">
@@ -703,7 +745,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Recorrido interactivo</span>
           <h2>El aire, el equipo y el control trabajan como un sistema.</h2>
-          <p class="lead">Una explicación visual para entender las tres áreas. Es una representación orientativa: la configuración real depende de cada instalación.</p>
+          <p class="lead">Selecciona una opción y conoce de forma visual el funcionamiento general de cada sistema.</p>
         </div>
         <div class="climate-lab reveal">
           <div class="lab-copy">
@@ -739,7 +781,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Cómo solicitar el servicio</span>
           <h2>De la consulta a la actuación técnica.</h2>
-          <p class="lead">Un recorrido claro para orientar la solicitud, sin añadir plazos, coberturas ni condiciones que no estén confirmadas.</p>
+          <p class="lead">Cuéntanos qué sistema tienes y si necesitas instalación, reparación o mantenimiento.</p>
         </div>
         <div class="process-grid reveal">
           <article class="process-card"><span class="process-number">01</span><h3>Consulta</h3><p>Indica si necesitas instalación, reparación o mantenimiento y describe el sistema de climatización.</p></article>
@@ -755,7 +797,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Fotografías reales</span>
           <h2>Climatización vista desde tres puntos.</h2>
-          <p class="lead">Equipos exteriores, distribución de aire y revisión técnica. Tres imágenes fijas, sin carruseles ni cambios de tamaño.</p>
+          <p class="lead">Equipos exteriores, distribución de aire y revisión técnica en distintos puntos de una instalación.</p>
         </div>
         <div class="gallery-three">
           <figure class="gallery-item reveal">
@@ -779,7 +821,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Acreditaciones</span>
           <h2 id="cert-title">Nuestras certificaciones.</h2>
-          <p class="lead">Certificaciones indicadas en la información actual de Termoelectra.</p>
+          <p class="lead">Acreditaciones profesionales para instalaciones térmicas, frío industrial, gas y manipulación de gases fluorados.</p>
         </div>
         <div class="cert-grid">
           <article class="cert-card reveal"><span class="cert-icon">✓</span><b>RITE</b><p>Empresa instaladora y mantenedora de instalaciones térmicas en edificios.</p></article>
@@ -796,7 +838,7 @@
         <div class="faq-intro reveal">
           <span class="eyebrow">Preguntas frecuentes</span>
           <h2>FAQ</h2>
-          <p>Respuestas basadas en la información disponible. Cuando la respuesta depende de la instalación o de la zona, la página lo indica sin asumir datos.</p>
+          <p>Resolvemos las dudas más comunes sobre Climatización, Aire Acondicionado, Calefacción y Aerotermia.</p>
         </div>
         <div class="faq-list">
           <article class="faq-item reveal">
@@ -817,7 +859,7 @@
           </article>
           <article class="faq-item reveal">
             <button class="faq-q" type="button" aria-expanded="false"><span>¿En qué zonas trabajáis?</span><span class="faq-plus" aria-hidden="true">+</span></button>
-            <div class="faq-a"><div><p>La zona de atención no está especificada en la información facilitada. Consulta directamente con Termoelectra por teléfono o WhatsApp.</p></div></div>
+            <div class="faq-a"><div><p>Consulta la disponibilidad del servicio en tu ubicación directamente con Termoelectra por teléfono o WhatsApp.</p></div></div>
           </article>
           <article class="faq-item reveal">
             <button class="faq-q" type="button" aria-expanded="false"><span>¿Puedo solicitar mantenimiento además de instalación?</span><span class="faq-plus" aria-hidden="true">+</span></button>
@@ -905,10 +947,12 @@
       const header = document.getElementById('siteHeader');
       const menuToggle = document.getElementById('menuToggle');
       const navLinks = document.getElementById('navLinks');
+      const menuOverlay = document.getElementById('menuOverlay');
 
       const closeMenu = () => {
         menuToggle.classList.remove('active');
         navLinks.classList.remove('open');
+        menuOverlay.classList.remove('on');
         menuToggle.setAttribute('aria-expanded', 'false');
         menuToggle.setAttribute('aria-label', 'Abrir menú');
         document.body.classList.remove('menu-open');
@@ -918,11 +962,13 @@
         const open = !navLinks.classList.contains('open');
         navLinks.classList.toggle('open', open);
         menuToggle.classList.toggle('active', open);
+        menuOverlay.classList.toggle('on', open);
         menuToggle.setAttribute('aria-expanded', String(open));
         menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
         document.body.classList.toggle('menu-open', open);
       });
 
+      menuOverlay.addEventListener('click', closeMenu);
       navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
       window.addEventListener('resize', () => { if (window.innerWidth > 1000) closeMenu(); });
       const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
@@ -981,7 +1027,7 @@
         heat: {
           heading:'Calefacción',
           title:'Aporte de calor',
-          text:'La representación muestra el recorrido entre las unidades. El sistema real depende de cada espacio.',
+          text:'El sistema conecta sus unidades para aportar calor al espacio según las necesidades de la instalación.',
           symbol:'☀'
         },
         aero: {
